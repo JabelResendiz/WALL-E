@@ -3,5 +3,3 @@
 
 # COMANDOS Y FUNCIONES 
 
-aldoooo
-aldooooooooooo
