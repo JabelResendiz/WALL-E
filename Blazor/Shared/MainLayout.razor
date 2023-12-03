@@ -1,0 +1,25 @@
+﻿@inherits LayoutComponentBase
+
+<PageTitle>Blazor</PageTitle>
+
+<div class="page">
+
+    <main>
+        <div class="top-row px-4">
+            <img src="logo.png" alt="" class="logo">
+            <div class="nav-item">
+                <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
+                    <span class="ri-home-2-fill" aria-hidden="true"></span>
+                </NavLink>
+            </div>
+            <div class="nav-item">
+                <NavLink class="nav-link" href="Graph">
+                    <span class="ri-pencil-ruler-2-fill" aria-hidden="true"></span>
+                </NavLink>
+            </div>
+        </div>
+
+        @Body
+
+    </main>
+</div>

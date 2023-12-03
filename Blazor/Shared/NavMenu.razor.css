@@ -1,0 +1,71 @@
+/*algo*/
+.navbar-toggler {
+    background-color: rgba(255, 0, 0, 0.1);
+}
+
+/*algo*/
+.navbar-brand {
+    font-size: 1.1rem;
+}
+
+/*algo*/
+.oi {
+    width: 2rem;
+    font-size: 1.1rem;
+    vertical-align: text-top;
+    top: -2px;
+}
+
+/*algo*/
+.nav-item {
+    font-size: 0.9rem;
+    padding-bottom: 0.5rem;
+}
+
+/*algo*/
+.nav-item:first-of-type {
+    padding-top: 1rem;
+}
+
+/*algo*/
+.nav-item:last-of-type {
+    padding-bottom: 1rem;
+}
+
+/* esto es del boton graficadora*/
+.nav-item ::deep a {
+    color: aquamarine;
+    border-radius: 4px;
+    height: 3rem;
+    display: flex;
+    align-items: center;
+    line-height: 3rem;
+}
+
+/* esto es de boton home*/
+.nav-item ::deep a.active {
+    background-color: rgba(83, 60, 60, 0.25);
+    color: #db3434;
+}
+
+.nav-item ::deep a:hover {
+    background-color: rgba(255, 255, 255, 0.25);
+    color: #d62424;
+}
+
+@media (min-width: 641px) {
+    .navbar-toggler {
+        display: none;
+    }
+
+    .collapse {
+        /* Never collapse the sidebar for wide screens */
+        display: block;
+    }
+
+    .nav-scrollable {
+        /* Allow sidebar to scroll for tall menus */
+        height: calc(100vh - 3.5rem);
+        overflow-y: auto;
+    }
+}
