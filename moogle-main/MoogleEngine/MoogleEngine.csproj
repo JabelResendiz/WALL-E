@@ -6,4 +6,10 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="Microsoft.JSInterop" Version="7.0.0" />
+  </ItemGroup>
+
+ 
+
 </Project>

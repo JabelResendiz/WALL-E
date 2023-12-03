@@ -1,0 +1,45 @@
+﻿@page "/counter"
+@using InterpreterDyZ;
+@inject IJSRuntime JS
+
+<PageTitle>Counter</PageTitle>
+
+<h1>Counter</h1>
+
+<p role="status">Current count: @currentCount</p>
+
+<textarea class="p-1 my-4" @bind="Text" rows="10" cols="50" >Introduzca su busqueda</textarea>
+
+<button type="default" class="btn btn-primary" @onclick="Resultado">🔍 Buscar</button>
+
+<button class="btn btn-primary" @onclick="Resultado"> Click me</button>
+
+<button @onclick="Resultado">Run JS Script</button>
+
+<div id="p-container">
+
+</div>
+
+
+
+@code {
+
+    
+
+    
+    string Text="";
+    int currentCount=0;
+    public void Resultado(){
+        Principal.Text=Text;
+
+        Console.WriteLine("opopo");
+        try{
+            Principal.Principal2(JS);
+        }
+        catch(Exception ex){
+            Console.WriteLine("An error has ocurred in your program");
+        }
+        currentCount++;
+    }
+}
+

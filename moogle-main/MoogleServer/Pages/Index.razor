@@ -1,8 +1,8 @@
 ﻿@page "/"
 
-<PageTitle>Moogle!</PageTitle>
+<PageTitle>WALLE!</PageTitle>
 
-<h1>🔍 Moogle!</h1>
+<h1>🔍 WALLE!</h1>
 
 <input class="p-1 my-4" @bind="query" placeholder="Introduzca su búsqueda">
 
@@ -31,5 +31,20 @@
 
     private void RunQuery() {
         result = Moogle.Query(query);
+    }
+}
+
+
+<button @onclick="appendText">Run JS Script</button>
+
+<div id="p-container">
+
+</div>
+
+@inject IJSRuntime JS
+@code {
+    public async void appendText(){
+        
+        await JS.InvokeAsync<string>("showAlert","Text will append when you close this alert");
     }
 }

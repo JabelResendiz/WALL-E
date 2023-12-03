@@ -1,0 +1,76 @@
+C:\Users\HP\Documents\Go#Lenguage.Logic\Blazor\BlazorServer\bin\Debug\net7.0\appsettings.Development.json
+C:\Users\HP\Documents\Go#Lenguage.Logic\Blazor\BlazorServer\bin\Debug\net7.0\appsettings.json
+C:\Users\HP\Documents\Go#Lenguage.Logic\Blazor\BlazorServer\bin\Debug\net7.0\BlazorServer.staticwebassets.runtime.json
+C:\Users\HP\Documents\Go#Lenguage.Logic\Blazor\BlazorServer\bin\Debug\net7.0\BlazorServer.exe
+C:\Users\HP\Documents\Go#Lenguage.Logic\Blazor\BlazorServer\bin\Debug\net7.0\BlazorServer.deps.json
+C:\Users\HP\Documents\Go#Lenguage.Logic\Blazor\BlazorServer\bin\Debug\net7.0\BlazorServer.runtimeconfig.json
+C:\Users\HP\Documents\Go#Lenguage.Logic\Blazor\BlazorServer\bin\Debug\net7.0\BlazorServer.dll
+C:\Users\HP\Documents\Go#Lenguage.Logic\Blazor\BlazorServer\bin\Debug\net7.0\BlazorServer.pdb
+C:\Users\HP\Documents\Go#Lenguage.Logic\Blazor\BlazorServer\obj\Debug\net7.0\BlazorServer.csproj.AssemblyReference.cache
+C:\Users\HP\Documents\Go#Lenguage.Logic\Blazor\BlazorServer\obj\Debug\net7.0\BlazorServer.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\HP\Documents\Go#Lenguage.Logic\Blazor\BlazorServer\obj\Debug\net7.0\BlazorServer.AssemblyInfoInputs.cache
+C:\Users\HP\Documents\Go#Lenguage.Logic\Blazor\BlazorServer\obj\Debug\net7.0\BlazorServer.AssemblyInfo.cs
+C:\Users\HP\Documents\Go#Lenguage.Logic\Blazor\BlazorServer\obj\Debug\net7.0\BlazorServer.csproj.CoreCompileInputs.cache
+C:\Users\HP\Documents\Go#Lenguage.Logic\Blazor\BlazorServer\obj\Debug\net7.0\BlazorServer.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\HP\Documents\Go#Lenguage.Logic\Blazor\BlazorServer\obj\Debug\net7.0\BlazorServer.RazorAssemblyInfo.cache
+C:\Users\HP\Documents\Go#Lenguage.Logic\Blazor\BlazorServer\obj\Debug\net7.0\BlazorServer.RazorAssemblyInfo.cs
+C:\Users\HP\Documents\Go#Lenguage.Logic\Blazor\BlazorServer\obj\Debug\net7.0\staticwebassets\msbuild.BlazorServer.Microsoft.AspNetCore.StaticWebAssets.props
+C:\Users\HP\Documents\Go#Lenguage.Logic\Blazor\BlazorServer\obj\Debug\net7.0\staticwebassets\msbuild.build.BlazorServer.props
+C:\Users\HP\Documents\Go#Lenguage.Logic\Blazor\BlazorServer\obj\Debug\net7.0\staticwebassets\msbuild.buildMultiTargeting.BlazorServer.props
+C:\Users\HP\Documents\Go#Lenguage.Logic\Blazor\BlazorServer\obj\Debug\net7.0\staticwebassets\msbuild.buildTransitive.BlazorServer.props
+C:\Users\HP\Documents\Go#Lenguage.Logic\Blazor\BlazorServer\obj\Debug\net7.0\staticwebassets.pack.json
+C:\Users\HP\Documents\Go#Lenguage.Logic\Blazor\BlazorServer\obj\Debug\net7.0\staticwebassets.build.json
+C:\Users\HP\Documents\Go#Lenguage.Logic\Blazor\BlazorServer\obj\Debug\net7.0\staticwebassets.development.json
+C:\Users\HP\Documents\Go#Lenguage.Logic\Blazor\BlazorServer\obj\Debug\net7.0\scopedcss\Shared\MainLayout.razor.rz.scp.css
+C:\Users\HP\Documents\Go#Lenguage.Logic\Blazor\BlazorServer\obj\Debug\net7.0\scopedcss\Shared\NavMenu.razor.rz.scp.css
+C:\Users\HP\Documents\Go#Lenguage.Logic\Blazor\BlazorServer\obj\Debug\net7.0\scopedcss\bundle\BlazorServer.styles.css
+C:\Users\HP\Documents\Go#Lenguage.Logic\Blazor\BlazorServer\obj\Debug\net7.0\scopedcss\projectbundle\BlazorServer.bundle.scp.css
+C:\Users\HP\Documents\Go#Lenguage.Logic\Blazor\BlazorServer\obj\Debug\net7.0\BlazorServer.dll
+C:\Users\HP\Documents\Go#Lenguage.Logic\Blazor\BlazorServer\obj\Debug\net7.0\refint\BlazorServer.dll
+C:\Users\HP\Documents\Go#Lenguage.Logic\Blazor\BlazorServer\obj\Debug\net7.0\BlazorServer.pdb
+C:\Users\HP\Documents\Go#Lenguage.Logic\Blazor\BlazorServer\obj\Debug\net7.0\BlazorServer.genruntimeconfig.cache
+C:\Users\HP\Documents\Go#Lenguage.Logic\Blazor\BlazorServer\obj\Debug\net7.0\ref\BlazorServer.dll
+C:\Users\HP\Documents\Go#Lenguage.Logic\Blazor\BlazorServer\bin\Debug\net7.0\Go#Lenguage.Logic.deps.json
+C:\Users\HP\Documents\Go#Lenguage.Logic\Blazor\BlazorServer\bin\Debug\net7.0\Go#Lenguage.Logic.runtimeconfig.json
+C:\Users\HP\Documents\Go#Lenguage.Logic\Blazor\BlazorServer\bin\Debug\net7.0\Go#Lenguage.Logic.exe
+C:\Users\HP\Documents\Go#Lenguage.Logic\Blazor\BlazorServer\bin\Debug\net7.0\Go#Lenguage.Logic.dll
+C:\Users\HP\Documents\Go#Lenguage.Logic\Blazor\BlazorServer\bin\Debug\net7.0\Go#Lenguage.Logic.pdb
+C:\Users\HP\Documents\Go#Lenguage.Logic\Blazor\BlazorServer\obj\Debug\net7.0\BlazorServer.csproj.CopyComplete
+C:\Users\HP\Documents\GEO WALL_E\WALL-E\Blazor\BlazorServer\bin\Debug\net7.0\appsettings.Development.json
+C:\Users\HP\Documents\GEO WALL_E\WALL-E\Blazor\BlazorServer\bin\Debug\net7.0\appsettings.json
+C:\Users\HP\Documents\GEO WALL_E\WALL-E\Blazor\BlazorServer\bin\Debug\net7.0\Go#Lenguage.Logic.deps.json
+C:\Users\HP\Documents\GEO WALL_E\WALL-E\Blazor\BlazorServer\bin\Debug\net7.0\Go#Lenguage.Logic.runtimeconfig.json
+C:\Users\HP\Documents\GEO WALL_E\WALL-E\Blazor\BlazorServer\bin\Debug\net7.0\Go#Lenguage.Logic.exe
+C:\Users\HP\Documents\GEO WALL_E\WALL-E\Blazor\BlazorServer\bin\Debug\net7.0\BlazorServer.staticwebassets.runtime.json
+C:\Users\HP\Documents\GEO WALL_E\WALL-E\Blazor\BlazorServer\bin\Debug\net7.0\BlazorServer.exe
+C:\Users\HP\Documents\GEO WALL_E\WALL-E\Blazor\BlazorServer\bin\Debug\net7.0\BlazorServer.deps.json
+C:\Users\HP\Documents\GEO WALL_E\WALL-E\Blazor\BlazorServer\bin\Debug\net7.0\BlazorServer.runtimeconfig.json
+C:\Users\HP\Documents\GEO WALL_E\WALL-E\Blazor\BlazorServer\bin\Debug\net7.0\BlazorServer.dll
+C:\Users\HP\Documents\GEO WALL_E\WALL-E\Blazor\BlazorServer\bin\Debug\net7.0\BlazorServer.pdb
+C:\Users\HP\Documents\GEO WALL_E\WALL-E\Blazor\BlazorServer\bin\Debug\net7.0\Go#Lenguage.Logic.dll
+C:\Users\HP\Documents\GEO WALL_E\WALL-E\Blazor\BlazorServer\bin\Debug\net7.0\Go#Lenguage.Logic.pdb
+C:\Users\HP\Documents\GEO WALL_E\WALL-E\Blazor\BlazorServer\obj\Debug\net7.0\BlazorServer.csproj.AssemblyReference.cache
+C:\Users\HP\Documents\GEO WALL_E\WALL-E\Blazor\BlazorServer\obj\Debug\net7.0\BlazorServer.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\HP\Documents\GEO WALL_E\WALL-E\Blazor\BlazorServer\obj\Debug\net7.0\BlazorServer.AssemblyInfoInputs.cache
+C:\Users\HP\Documents\GEO WALL_E\WALL-E\Blazor\BlazorServer\obj\Debug\net7.0\BlazorServer.AssemblyInfo.cs
+C:\Users\HP\Documents\GEO WALL_E\WALL-E\Blazor\BlazorServer\obj\Debug\net7.0\BlazorServer.csproj.CoreCompileInputs.cache
+C:\Users\HP\Documents\GEO WALL_E\WALL-E\Blazor\BlazorServer\obj\Debug\net7.0\BlazorServer.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\HP\Documents\GEO WALL_E\WALL-E\Blazor\BlazorServer\obj\Debug\net7.0\BlazorServer.RazorAssemblyInfo.cache
+C:\Users\HP\Documents\GEO WALL_E\WALL-E\Blazor\BlazorServer\obj\Debug\net7.0\BlazorServer.RazorAssemblyInfo.cs
+C:\Users\HP\Documents\GEO WALL_E\WALL-E\Blazor\BlazorServer\obj\Debug\net7.0\staticwebassets\msbuild.BlazorServer.Microsoft.AspNetCore.StaticWebAssets.props
+C:\Users\HP\Documents\GEO WALL_E\WALL-E\Blazor\BlazorServer\obj\Debug\net7.0\staticwebassets\msbuild.build.BlazorServer.props
+C:\Users\HP\Documents\GEO WALL_E\WALL-E\Blazor\BlazorServer\obj\Debug\net7.0\staticwebassets\msbuild.buildMultiTargeting.BlazorServer.props
+C:\Users\HP\Documents\GEO WALL_E\WALL-E\Blazor\BlazorServer\obj\Debug\net7.0\staticwebassets\msbuild.buildTransitive.BlazorServer.props
+C:\Users\HP\Documents\GEO WALL_E\WALL-E\Blazor\BlazorServer\obj\Debug\net7.0\staticwebassets.pack.json
+C:\Users\HP\Documents\GEO WALL_E\WALL-E\Blazor\BlazorServer\obj\Debug\net7.0\staticwebassets.build.json
+C:\Users\HP\Documents\GEO WALL_E\WALL-E\Blazor\BlazorServer\obj\Debug\net7.0\staticwebassets.development.json
+C:\Users\HP\Documents\GEO WALL_E\WALL-E\Blazor\BlazorServer\obj\Debug\net7.0\scopedcss\Shared\MainLayout.razor.rz.scp.css
+C:\Users\HP\Documents\GEO WALL_E\WALL-E\Blazor\BlazorServer\obj\Debug\net7.0\scopedcss\Shared\NavMenu.razor.rz.scp.css
+C:\Users\HP\Documents\GEO WALL_E\WALL-E\Blazor\BlazorServer\obj\Debug\net7.0\scopedcss\bundle\BlazorServer.styles.css
+C:\Users\HP\Documents\GEO WALL_E\WALL-E\Blazor\BlazorServer\obj\Debug\net7.0\scopedcss\projectbundle\BlazorServer.bundle.scp.css
+C:\Users\HP\Documents\GEO WALL_E\WALL-E\Blazor\BlazorServer\obj\Debug\net7.0\BlazorServer.csproj.CopyComplete
+C:\Users\HP\Documents\GEO WALL_E\WALL-E\Blazor\BlazorServer\obj\Debug\net7.0\BlazorServer.dll
+C:\Users\HP\Documents\GEO WALL_E\WALL-E\Blazor\BlazorServer\obj\Debug\net7.0\refint\BlazorServer.dll
+C:\Users\HP\Documents\GEO WALL_E\WALL-E\Blazor\BlazorServer\obj\Debug\net7.0\BlazorServer.pdb
+C:\Users\HP\Documents\GEO WALL_E\WALL-E\Blazor\BlazorServer\obj\Debug\net7.0\BlazorServer.genruntimeconfig.cache
+C:\Users\HP\Documents\GEO WALL_E\WALL-E\Blazor\BlazorServer\obj\Debug\net7.0\ref\BlazorServer.dll

@@ -1,0 +1,5 @@
+C:\Users\HP\Documents\GEO WALL_E\WALL-E\obj\Debug\net7.0\WALL-E.csproj.AssemblyReference.cache
+C:\Users\HP\Documents\GEO WALL_E\WALL-E\obj\Debug\net7.0\WALL-E.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\HP\Documents\GEO WALL_E\WALL-E\obj\Debug\net7.0\WALL-E.AssemblyInfoInputs.cache
+C:\Users\HP\Documents\GEO WALL_E\WALL-E\obj\Debug\net7.0\WALL-E.AssemblyInfo.cs
+C:\Users\HP\Documents\GEO WALL_E\WALL-E\obj\Debug\net7.0\WALL-E.csproj.CoreCompileInputs.cache
