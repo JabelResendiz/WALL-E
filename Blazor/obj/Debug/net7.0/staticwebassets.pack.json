@@ -49,12 +49,116 @@
       "PackagePath": "staticwebassets\\css\\open-iconic\\font\\fonts\\open-iconic.woff"
     },
     {
+      "Id": "D:\\Programacion\\Proyectos\\Web Wall-e\\graficadora\\blazor\\wwwroot\\css\\otra.jpg",
+      "PackagePath": "staticwebassets\\css\\otra.jpg"
+    },
+    {
       "Id": "D:\\Programacion\\Proyectos\\Web Wall-e\\graficadora\\blazor\\wwwroot\\css\\site.css",
       "PackagePath": "staticwebassets\\css\\site.css"
     },
     {
       "Id": "D:\\Programacion\\Proyectos\\Web Wall-e\\graficadora\\blazor\\wwwroot\\favicon.png",
       "PackagePath": "staticwebassets\\favicon.png"
+    },
+    {
+      "Id": "D:\\Programacion\\Proyectos\\Web Wall-e\\graficadora\\blazor\\wwwroot\\fonts\\Famous Fonts.txt",
+      "PackagePath": "staticwebassets\\fonts\\Famous Fonts.txt"
+    },
+    {
+      "Id": "D:\\Programacion\\Proyectos\\Web Wall-e\\graficadora\\blazor\\wwwroot\\fonts\\gunship.ttf",
+      "PackagePath": "staticwebassets\\fonts\\gunship.ttf"
+    },
+    {
+      "Id": "D:\\Programacion\\Proyectos\\Web Wall-e\\graficadora\\blazor\\wwwroot\\fonts\\gunship.txt",
+      "PackagePath": "staticwebassets\\fonts\\gunship.txt"
+    },
+    {
+      "Id": "D:\\Programacion\\Proyectos\\Web Wall-e\\graficadora\\blazor\\wwwroot\\fonts\\gunship3d.ttf",
+      "PackagePath": "staticwebassets\\fonts\\gunship3d.ttf"
+    },
+    {
+      "Id": "D:\\Programacion\\Proyectos\\Web Wall-e\\graficadora\\blazor\\wwwroot\\fonts\\gunship3dital.ttf",
+      "PackagePath": "staticwebassets\\fonts\\gunship3dital.ttf"
+    },
+    {
+      "Id": "D:\\Programacion\\Proyectos\\Web Wall-e\\graficadora\\blazor\\wwwroot\\fonts\\gunshipacad.ttf",
+      "PackagePath": "staticwebassets\\fonts\\gunshipacad.ttf"
+    },
+    {
+      "Id": "D:\\Programacion\\Proyectos\\Web Wall-e\\graficadora\\blazor\\wwwroot\\fonts\\gunshipacadital.ttf",
+      "PackagePath": "staticwebassets\\fonts\\gunshipacadital.ttf"
+    },
+    {
+      "Id": "D:\\Programacion\\Proyectos\\Web Wall-e\\graficadora\\blazor\\wwwroot\\fonts\\gunshipbold.ttf",
+      "PackagePath": "staticwebassets\\fonts\\gunshipbold.ttf"
+    },
+    {
+      "Id": "D:\\Programacion\\Proyectos\\Web Wall-e\\graficadora\\blazor\\wwwroot\\fonts\\gunshipboldital.ttf",
+      "PackagePath": "staticwebassets\\fonts\\gunshipboldital.ttf"
+    },
+    {
+      "Id": "D:\\Programacion\\Proyectos\\Web Wall-e\\graficadora\\blazor\\wwwroot\\fonts\\gunshipcond.ttf",
+      "PackagePath": "staticwebassets\\fonts\\gunshipcond.ttf"
+    },
+    {
+      "Id": "D:\\Programacion\\Proyectos\\Web Wall-e\\graficadora\\blazor\\wwwroot\\fonts\\gunshipcondital.ttf",
+      "PackagePath": "staticwebassets\\fonts\\gunshipcondital.ttf"
+    },
+    {
+      "Id": "D:\\Programacion\\Proyectos\\Web Wall-e\\graficadora\\blazor\\wwwroot\\fonts\\gunshipexpand.ttf",
+      "PackagePath": "staticwebassets\\fonts\\gunshipexpand.ttf"
+    },
+    {
+      "Id": "D:\\Programacion\\Proyectos\\Web Wall-e\\graficadora\\blazor\\wwwroot\\fonts\\gunshipexpandital.ttf",
+      "PackagePath": "staticwebassets\\fonts\\gunshipexpandital.ttf"
+    },
+    {
+      "Id": "D:\\Programacion\\Proyectos\\Web Wall-e\\graficadora\\blazor\\wwwroot\\fonts\\gunshipgrad.ttf",
+      "PackagePath": "staticwebassets\\fonts\\gunshipgrad.ttf"
+    },
+    {
+      "Id": "D:\\Programacion\\Proyectos\\Web Wall-e\\graficadora\\blazor\\wwwroot\\fonts\\gunshipgradital.ttf",
+      "PackagePath": "staticwebassets\\fonts\\gunshipgradital.ttf"
+    },
+    {
+      "Id": "D:\\Programacion\\Proyectos\\Web Wall-e\\graficadora\\blazor\\wwwroot\\fonts\\gunshiphalf.ttf",
+      "PackagePath": "staticwebassets\\fonts\\gunshiphalf.ttf"
+    },
+    {
+      "Id": "D:\\Programacion\\Proyectos\\Web Wall-e\\graficadora\\blazor\\wwwroot\\fonts\\gunshiphalfital.ttf",
+      "PackagePath": "staticwebassets\\fonts\\gunshiphalfital.ttf"
+    },
+    {
+      "Id": "D:\\Programacion\\Proyectos\\Web Wall-e\\graficadora\\blazor\\wwwroot\\fonts\\gunshipital.ttf",
+      "PackagePath": "staticwebassets\\fonts\\gunshipital.ttf"
+    },
+    {
+      "Id": "D:\\Programacion\\Proyectos\\Web Wall-e\\graficadora\\blazor\\wwwroot\\fonts\\gunshiplaser.ttf",
+      "PackagePath": "staticwebassets\\fonts\\gunshiplaser.ttf"
+    },
+    {
+      "Id": "D:\\Programacion\\Proyectos\\Web Wall-e\\graficadora\\blazor\\wwwroot\\fonts\\gunshiplaserital.ttf",
+      "PackagePath": "staticwebassets\\fonts\\gunshiplaserital.ttf"
+    },
+    {
+      "Id": "D:\\Programacion\\Proyectos\\Web Wall-e\\graficadora\\blazor\\wwwroot\\fonts\\gunshipleft.ttf",
+      "PackagePath": "staticwebassets\\fonts\\gunshipleft.ttf"
+    },
+    {
+      "Id": "D:\\Programacion\\Proyectos\\Web Wall-e\\graficadora\\blazor\\wwwroot\\fonts\\gunshipout.ttf",
+      "PackagePath": "staticwebassets\\fonts\\gunshipout.ttf"
+    },
+    {
+      "Id": "D:\\Programacion\\Proyectos\\Web Wall-e\\graficadora\\blazor\\wwwroot\\fonts\\gunshipoutital.ttf",
+      "PackagePath": "staticwebassets\\fonts\\gunshipoutital.ttf"
+    },
+    {
+      "Id": "D:\\Programacion\\Proyectos\\Web Wall-e\\graficadora\\blazor\\wwwroot\\fonts\\gunshipsemital.ttf",
+      "PackagePath": "staticwebassets\\fonts\\gunshipsemital.ttf"
+    },
+    {
+      "Id": "D:\\Programacion\\Proyectos\\Web Wall-e\\graficadora\\blazor\\wwwroot\\fonts\\gunshipsuperital.ttf",
+      "PackagePath": "staticwebassets\\fonts\\gunshipsuperital.ttf"
     },
     {
       "Id": "D:\\Programacion\\Proyectos\\Web Wall-e\\graficadora\\blazor\\wwwroot\\logo.png",
