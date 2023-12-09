@@ -122,3 +122,13 @@ public enum ColorType{
     black,
     gray
 }
+
+
+public enum WalleFigures{
+
+    POINT,
+    SEGMENT,
+    LINE,
+    RAY,
+    CIRCLE
+}

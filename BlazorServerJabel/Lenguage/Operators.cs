@@ -207,6 +207,7 @@ public class SEQUENCE:AST{
 }
 
 /*
+
 public class InfiniteSequence<double>:SEQUENCE<double>,IEnumerable<double>{
 
     private double first{get;}
@@ -230,7 +231,7 @@ public class Draw:AST{
 }
 
 
-public abstract class FIGURE:AST{
+public class FIGURE:AST{
 
     public Token name;
     public AST firstParam;
@@ -521,10 +522,17 @@ public class FunctionWALLE:AST {
         return Math.Sqrt(Math.Pow(p1.param1-p2.param1,2)+ Math.Pow(p1.param3-p2.param3,2));
     }
 
+    
+
     public List<object> Intersect(FIGURE f1,FIGURE f2){
         
         List<object> listIntersect= new List<object>();
 
+        if((int)Enum.Parse(typeof(WalleFigures)f1.ToString().Substring(15))>(int)Enum.Parse(typeof(WalleFigures)f2.ToString().Substring(15))){
+             FIGURE f=f1;
+             f1=f2;
+             f2=f;
+        }
 
 
 

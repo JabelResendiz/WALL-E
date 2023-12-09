@@ -45,11 +45,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\HP\\Documents\\GEO WALL_E\\WALL-E\\Blazor\\Lenguage\\Go#Lenguage.Logic.csproj",
+      "projectUniqueName": "C:\\Users\\HP\\Documents\\GEO WALL_E\\WALL-E\\BlazorServerJabel\\Lenguage\\Go#Lenguage.Logic.csproj",
       "projectName": "Go#Lenguage.Logic",
-      "projectPath": "C:\\Users\\HP\\Documents\\GEO WALL_E\\WALL-E\\Blazor\\Lenguage\\Go#Lenguage.Logic.csproj",
+      "projectPath": "C:\\Users\\HP\\Documents\\GEO WALL_E\\WALL-E\\BlazorServerJabel\\Lenguage\\Go#Lenguage.Logic.csproj",
       "packagesPath": "C:\\Users\\HP\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\HP\\Documents\\GEO WALL_E\\WALL-E\\Blazor\\Lenguage\\obj\\",
+      "outputPath": "C:\\Users\\HP\\Documents\\GEO WALL_E\\WALL-E\\BlazorServerJabel\\Lenguage\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\HP\\AppData\\Roaming\\NuGet\\NuGet.Config"
