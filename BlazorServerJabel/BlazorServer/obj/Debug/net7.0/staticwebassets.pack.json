@@ -69,12 +69,120 @@
       "PackagePath": "staticwebassets\\css\\open-iconic\\font\\fonts\\open-iconic.woff"
     },
     {
+      "Id": "C:\\Users\\HP\\Documents\\GEO WALL_E\\WALL-E\\BlazorServerJabel\\BlazorServer\\wwwroot\\css\\otra.jpg",
+      "PackagePath": "staticwebassets\\css\\otra.jpg"
+    },
+    {
       "Id": "C:\\Users\\HP\\Documents\\GEO WALL_E\\WALL-E\\BlazorServerJabel\\BlazorServer\\wwwroot\\css\\site.css",
       "PackagePath": "staticwebassets\\css\\site.css"
     },
     {
       "Id": "C:\\Users\\HP\\Documents\\GEO WALL_E\\WALL-E\\BlazorServerJabel\\BlazorServer\\wwwroot\\favicon.png",
       "PackagePath": "staticwebassets\\favicon.png"
+    },
+    {
+      "Id": "C:\\Users\\HP\\Documents\\GEO WALL_E\\WALL-E\\BlazorServerJabel\\BlazorServer\\wwwroot\\fonts\\Famous Fonts.txt",
+      "PackagePath": "staticwebassets\\fonts\\Famous Fonts.txt"
+    },
+    {
+      "Id": "C:\\Users\\HP\\Documents\\GEO WALL_E\\WALL-E\\BlazorServerJabel\\BlazorServer\\wwwroot\\fonts\\gunship.ttf",
+      "PackagePath": "staticwebassets\\fonts\\gunship.ttf"
+    },
+    {
+      "Id": "C:\\Users\\HP\\Documents\\GEO WALL_E\\WALL-E\\BlazorServerJabel\\BlazorServer\\wwwroot\\fonts\\gunship.txt",
+      "PackagePath": "staticwebassets\\fonts\\gunship.txt"
+    },
+    {
+      "Id": "C:\\Users\\HP\\Documents\\GEO WALL_E\\WALL-E\\BlazorServerJabel\\BlazorServer\\wwwroot\\fonts\\gunship3d.ttf",
+      "PackagePath": "staticwebassets\\fonts\\gunship3d.ttf"
+    },
+    {
+      "Id": "C:\\Users\\HP\\Documents\\GEO WALL_E\\WALL-E\\BlazorServerJabel\\BlazorServer\\wwwroot\\fonts\\gunship3dital.ttf",
+      "PackagePath": "staticwebassets\\fonts\\gunship3dital.ttf"
+    },
+    {
+      "Id": "C:\\Users\\HP\\Documents\\GEO WALL_E\\WALL-E\\BlazorServerJabel\\BlazorServer\\wwwroot\\fonts\\gunshipacad.ttf",
+      "PackagePath": "staticwebassets\\fonts\\gunshipacad.ttf"
+    },
+    {
+      "Id": "C:\\Users\\HP\\Documents\\GEO WALL_E\\WALL-E\\BlazorServerJabel\\BlazorServer\\wwwroot\\fonts\\gunshipacadital.ttf",
+      "PackagePath": "staticwebassets\\fonts\\gunshipacadital.ttf"
+    },
+    {
+      "Id": "C:\\Users\\HP\\Documents\\GEO WALL_E\\WALL-E\\BlazorServerJabel\\BlazorServer\\wwwroot\\fonts\\gunshipbold.ttf",
+      "PackagePath": "staticwebassets\\fonts\\gunshipbold.ttf"
+    },
+    {
+      "Id": "C:\\Users\\HP\\Documents\\GEO WALL_E\\WALL-E\\BlazorServerJabel\\BlazorServer\\wwwroot\\fonts\\gunshipboldital.ttf",
+      "PackagePath": "staticwebassets\\fonts\\gunshipboldital.ttf"
+    },
+    {
+      "Id": "C:\\Users\\HP\\Documents\\GEO WALL_E\\WALL-E\\BlazorServerJabel\\BlazorServer\\wwwroot\\fonts\\gunshipcond.ttf",
+      "PackagePath": "staticwebassets\\fonts\\gunshipcond.ttf"
+    },
+    {
+      "Id": "C:\\Users\\HP\\Documents\\GEO WALL_E\\WALL-E\\BlazorServerJabel\\BlazorServer\\wwwroot\\fonts\\gunshipcondital.ttf",
+      "PackagePath": "staticwebassets\\fonts\\gunshipcondital.ttf"
+    },
+    {
+      "Id": "C:\\Users\\HP\\Documents\\GEO WALL_E\\WALL-E\\BlazorServerJabel\\BlazorServer\\wwwroot\\fonts\\gunshipexpand.ttf",
+      "PackagePath": "staticwebassets\\fonts\\gunshipexpand.ttf"
+    },
+    {
+      "Id": "C:\\Users\\HP\\Documents\\GEO WALL_E\\WALL-E\\BlazorServerJabel\\BlazorServer\\wwwroot\\fonts\\gunshipexpandital.ttf",
+      "PackagePath": "staticwebassets\\fonts\\gunshipexpandital.ttf"
+    },
+    {
+      "Id": "C:\\Users\\HP\\Documents\\GEO WALL_E\\WALL-E\\BlazorServerJabel\\BlazorServer\\wwwroot\\fonts\\gunshipgrad.ttf",
+      "PackagePath": "staticwebassets\\fonts\\gunshipgrad.ttf"
+    },
+    {
+      "Id": "C:\\Users\\HP\\Documents\\GEO WALL_E\\WALL-E\\BlazorServerJabel\\BlazorServer\\wwwroot\\fonts\\gunshipgradital.ttf",
+      "PackagePath": "staticwebassets\\fonts\\gunshipgradital.ttf"
+    },
+    {
+      "Id": "C:\\Users\\HP\\Documents\\GEO WALL_E\\WALL-E\\BlazorServerJabel\\BlazorServer\\wwwroot\\fonts\\gunshiphalf.ttf",
+      "PackagePath": "staticwebassets\\fonts\\gunshiphalf.ttf"
+    },
+    {
+      "Id": "C:\\Users\\HP\\Documents\\GEO WALL_E\\WALL-E\\BlazorServerJabel\\BlazorServer\\wwwroot\\fonts\\gunshiphalfital.ttf",
+      "PackagePath": "staticwebassets\\fonts\\gunshiphalfital.ttf"
+    },
+    {
+      "Id": "C:\\Users\\HP\\Documents\\GEO WALL_E\\WALL-E\\BlazorServerJabel\\BlazorServer\\wwwroot\\fonts\\gunshipital.ttf",
+      "PackagePath": "staticwebassets\\fonts\\gunshipital.ttf"
+    },
+    {
+      "Id": "C:\\Users\\HP\\Documents\\GEO WALL_E\\WALL-E\\BlazorServerJabel\\BlazorServer\\wwwroot\\fonts\\gunshiplaser.ttf",
+      "PackagePath": "staticwebassets\\fonts\\gunshiplaser.ttf"
+    },
+    {
+      "Id": "C:\\Users\\HP\\Documents\\GEO WALL_E\\WALL-E\\BlazorServerJabel\\BlazorServer\\wwwroot\\fonts\\gunshiplaserital.ttf",
+      "PackagePath": "staticwebassets\\fonts\\gunshiplaserital.ttf"
+    },
+    {
+      "Id": "C:\\Users\\HP\\Documents\\GEO WALL_E\\WALL-E\\BlazorServerJabel\\BlazorServer\\wwwroot\\fonts\\gunshipleft.ttf",
+      "PackagePath": "staticwebassets\\fonts\\gunshipleft.ttf"
+    },
+    {
+      "Id": "C:\\Users\\HP\\Documents\\GEO WALL_E\\WALL-E\\BlazorServerJabel\\BlazorServer\\wwwroot\\fonts\\gunshipout.ttf",
+      "PackagePath": "staticwebassets\\fonts\\gunshipout.ttf"
+    },
+    {
+      "Id": "C:\\Users\\HP\\Documents\\GEO WALL_E\\WALL-E\\BlazorServerJabel\\BlazorServer\\wwwroot\\fonts\\gunshipoutital.ttf",
+      "PackagePath": "staticwebassets\\fonts\\gunshipoutital.ttf"
+    },
+    {
+      "Id": "C:\\Users\\HP\\Documents\\GEO WALL_E\\WALL-E\\BlazorServerJabel\\BlazorServer\\wwwroot\\fonts\\gunshipsemital.ttf",
+      "PackagePath": "staticwebassets\\fonts\\gunshipsemital.ttf"
+    },
+    {
+      "Id": "C:\\Users\\HP\\Documents\\GEO WALL_E\\WALL-E\\BlazorServerJabel\\BlazorServer\\wwwroot\\fonts\\gunshipsuperital.ttf",
+      "PackagePath": "staticwebassets\\fonts\\gunshipsuperital.ttf"
+    },
+    {
+      "Id": "C:\\Users\\HP\\Documents\\GEO WALL_E\\WALL-E\\BlazorServerJabel\\BlazorServer\\wwwroot\\logo.png",
+      "PackagePath": "staticwebassets\\logo.png"
     },
     {
       "Id": "obj\\Debug\\net7.0\\staticwebassets\\msbuild.BlazorServer.Microsoft.AspNetCore.StaticWebAssets.props",

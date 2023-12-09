@@ -1,20 +1,70 @@
-﻿@page "/counter"
+﻿@page "/Graph"
 @using InterpreterDyZ;
 @inject IJSRuntime JS
 
 <PageTitle>Counter</PageTitle>
 
-<h1>Counter</h1>
+<style>
 
-<p role="status">Current count: @currentCount</p>
+    body{
+        display:flex;
+        justify-content: center;
+ 
+        min-height: 100vh;
+        background: url('../css/otra.jpg') no-repeat;
+        background-size: cover;
+        background-position: center;
 
-<textarea class="p-1 my-4" @bind="Text" rows="10" cols="50" >Introduzca su busqueda</textarea>
+    }
 
-<button type="default" class="btn btn-primary" @onclick="Resultado">🔍 Buscar</button>
+    .tarea{
+        position: absolute;
+        align: center;
+        width: 800px;
+        height: 800px;
+        background: rgba(255,255,255,.1);
+        box-shadow: 0 25px 45px rgba(0,0,0,.2);
+        border-radius: 50px;
+        border:2px solid rgba(255,255,255,.5);
+        border-right: 2px solid rgba(255,255,255,.2);
+        border-bottom: 2px solid rgba(255,255,255,.2);
+        backdrop-filter: blur(10px);
 
-<button class="btn btn-primary" @onclick="Resultado"> Click me</button>
+        font-size:30px;
+        font-family: Georgia, 'Times New Roman', Times, serif;
+        color: white;
+        margin:10px;
+    }
 
-<button @onclick="Resultado">Run JS Script</button>
+    .input{
+        top:50%;
+        left:50%;
+        position:absolute;
+        height:40px;
+        width:80px;
+        display:inline-block;
+        color:white;
+        background: #3498db;
+        border: 1px solid transparent;
+        padding:12px 30px;
+        line-height:1.4;
+        font-size:14px;
+        font-weight:500;
+        border-radius:30px;
+        text-transform: uppercase;
+        transition:all .55s ease;
+    }
+</style>
+
+
+
+
+<textarea class="tarea" @bind="Text" rows="10" cols="50" >Introduzca su busqueda
+
+
+</textarea>
+
+<button type="default" class="input" @onclick="Resultado">🔍 Buscar</button>
 
 <div id="p-container">
 
@@ -24,9 +74,6 @@
 
 @code {
 
-    
-
-    
     string Text="";
     int currentCount=0;
     public void Resultado(){
@@ -38,8 +85,10 @@
         }
         catch(Exception ex){
             Console.WriteLine("An error has ocurred in your program");
+            
         }
         currentCount++;
     }
 }
+
 

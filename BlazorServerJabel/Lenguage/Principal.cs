@@ -17,8 +17,18 @@ using Microsoft.JSInterop;
 
 
           _jsRuntime=jsRuntime;
+          try
+          {
             Method();
-            Console.ForegroundColor= ConsoleColor.Red;
+          }
+          catch(Exception ex){
+            Console.WriteLine("An error has ocurred in your program");
+            Functiones.Clear();
+            COLOR.stackColor.Clear();
+            Interpreter.Scope.Clear();
+          }
+            
+            //Console.ForegroundColor= ConsoleColor.Red;
             
            Console.WriteLine("PRESS ENTER OR ESCAPE FOR SOME FUNCTIONALITY");
           /*  while(true)

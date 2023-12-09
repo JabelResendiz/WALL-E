@@ -16,7 +16,7 @@ public class Interpreter : NodeVisitor
     
     private double recursiveCount;
     private Parser? Parser;
-    public Dictionary<string, object> Scope;// variables declaradas con let (no puede ser global en todo el programa)
+    public static Dictionary<string, object> Scope;// variables declaradas con let (no puede ser global en todo el programa)
     //public Dictionary<string,AST>Function= new Dictionary<string, AST>();
 
     
