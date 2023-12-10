@@ -1,7 +1,6 @@
-using System.Data;
-using System.Reflection;
-using System.Reflection.Emit;
-using System.Runtime.CompilerServices;
+
+using System.Collections;
+
 namespace InterpreterDyZ;
 
 public class Parser
@@ -77,7 +76,7 @@ public class Parser
         {
             token = new Token(CurrentToken);
             if  (token.Type == TokenTypes.AND)
-            
+              
                 Process(TokenTypes.AND,"and");
 
             else if(token.Type == TokenTypes.OR)
@@ -214,7 +213,7 @@ public class Parser
     //metodo para reconocer simbolos terminales
     private AST Factor()
     {
-        AST node = new AST();
+        AST node = new Empty();
         Token token = new Token(CurrentToken);
         if((ReservateKeywords.Keyword.ContainsValue((TokenTypes)CurrentToken.Type) && (CurrentToken.Type!=TokenTypes.PI) )||
             token.Type is TokenTypes.CALL || token.Type is TokenTypes.L_KEY){
@@ -338,8 +337,8 @@ public class Parser
 
 
     private AST FunctionWAllE(){
-        AST node= new AST();
-
+        
+        AST node=new AST();
         if ( CurrentToken.Type==TokenTypes.LET)// comprueba si el token actual es un let
 
             node = Declaration();
@@ -593,21 +592,46 @@ public class Parser
     // Si toma dos , el primero es la base del logaritmo y el segundo es el argumento
     // Si toma solo uno, pues el argumento, entendiendo que la base es E 
     private AST Sequence(){
+        
         Process(TokenTypes.L_KEY,"L_key");
 
-        List<AST>sequencia= new List<AST>();
-        do{
-            if(CurrentToken.Type==TokenTypes.COMMA){
-                Process(TokenTypes.COMMA,"comma");
+        List<AST> k= new List<AST>(){Compounds()};
+        
+        
+        while(CurrentToken.Type==TokenTypes.COMMA){
+            Process(TokenTypes.COMMA,"The elements of a sequence must be separated by commas");
+            
+            k.Add(Compounds());
+        }
+   
+
+
+        AST node;
+        if(CurrentToken.Type==TokenTypes.THREEPOINT){
+            bool allAreDouble= k.All(x=> x is Num);
+            if(!allAreDouble){
+                SyntaxError("Las declaraciones de secuencias de tipo rango , ya sea intervalo como infinitas solo puede contener valores doubles");
             }
-            
-            sequencia.Add(Compounds());
-            
-        }while(CurrentToken.Type==TokenTypes.COMMA);
+            Process(TokenTypes.THREEPOINT,"...");
+            if(CurrentToken.Type!=TokenTypes.R_KEY){
+                
+                
+                AST final= Compounds();
+                if(!(final is Num)){
+                    SyntaxError("Las declaraciones de secuencias de tipo rango , ya sea cerrado como abierto solo puede contener valores doubles");
+                }
+                node=new RangoSequence(k.Select(x=>(Num)x),(Num)final);
+            }
 
+            else{
+                node=new InfiniteSequence<Num>(k.Select(x=>(Num)x));
+            }
+
+        }
+        else{
+            node=new SEQUENCE(k);
+        }
         Process(TokenTypes.R_KEY,$"A closed key is missing from the declaration of a sequence");
-
-        SEQUENCE node= new SEQUENCE(sequencia);
         return node;
     }
     

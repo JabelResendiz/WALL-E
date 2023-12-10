@@ -105,7 +105,7 @@ public enum TokenTypes {
     FUNCTION,
     LOG,
     REST,
-
+    THREEPOINT,
     
     #endregion
 }

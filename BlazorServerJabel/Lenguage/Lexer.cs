@@ -233,7 +233,16 @@ public class Lexer
 
                     return new Token(TokenTypes.SEMI, ';');
                 
-                
+                case '.':
+                    Next();
+                    if(CurrentChar=='.'){
+                        Next();
+                        if(CurrentChar=='.')
+                            Next();
+                            return new Token(TokenTypes.THREEPOINT,"...");
+                    }
+                    break;
+                    
 
             }
 
@@ -306,10 +315,11 @@ public class Lexer
     {
         
         string value = "";
-
+        int countPoint=0;
         while ((CurrentChar != null && char.IsDigit((char)CurrentChar)) || CurrentChar=='.')
         {
-            
+           
+            countPoint+=1;
             value += CurrentChar;
             Next();
         }
@@ -324,7 +334,7 @@ public class Lexer
                     && (char)CurrentChar!='=' && (char)CurrentChar!=',' &&
                     (char)CurrentChar!='&' && (char)CurrentChar!='|' && (char)CurrentChar!='<'&&
                     (char)CurrentChar!='>' && (char)CurrentChar!='!' && (char)CurrentChar!=';' && (char)CurrentChar!='@' &&
-                    (char)CurrentChar!='}'){
+                    (char)CurrentChar!='}'  ){
                 value+=CurrentChar;
                 variable+=1;
                 Next();

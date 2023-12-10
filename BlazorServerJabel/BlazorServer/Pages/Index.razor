@@ -257,15 +257,21 @@
 
 </body>
 
-
-
-
-
-
-
-
 @inject IJSRuntime JS
 @code {
+    private bool isHome=false;
+    protected override void OnInitialized(){
+        isHome=true;
+
+        explote();
+    }
+    public async void explote(){
+        await JS.InvokeAsync<string>("destroyCanvas","text");
+    }
+
+
+
+
     public async void appendText(){
         
         await JS.InvokeAsync<string>("showAlert","Text will append when you close this alert");

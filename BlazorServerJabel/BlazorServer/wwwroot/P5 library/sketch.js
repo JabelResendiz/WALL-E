@@ -1,7 +1,7 @@
 
 
 let zoom=1;
-
+let canvas;
 
 
 function setup() {
@@ -33,7 +33,7 @@ function setup() {
   */
   
   
-    createCanvas(800, 800);
+    canvas=createCanvas(800, 800);
     
     //background(200);
     noFill();
@@ -50,7 +50,18 @@ function setup() {
     //ellipse(200,200,50,50);
     ///ellipse(random(width),random(height),50,50);
   }
- 
+  function showAlert(msg){
+
+    alert(msg);
+  }
+  function destroyCanvas(){
+    
+  
+      canvas.remove();
+   
+    
+    
+  }
 
 /*
 function mouseWheel(event){
@@ -117,16 +128,19 @@ function DibujarSegment(parameters){
 
 
 
-
-
 function DibujarRay(parameters){
   // param1 y param2 son los puntos de inicio
   // param 3 y param4 son otros dos punto que pertenecen
 
     if(parameters.param1==parameters.param3){
   
-  
-          line(parameters.param1,parameters.param2,parameters.param1,800);
+          if(parameters.param2>parameters.param4){
+            line(parameters.param1,parameters.param2,parameters.param1,-800);
+          }
+          else{
+            line(parameters.param1,parameters.param2,parameters.param1,800);
+          }
+          
     }
   
     else{
@@ -136,8 +150,13 @@ function DibujarRay(parameters){
           if(m==0){
     
   
+            if(parameters.param1>parameters.param3){
+              line(parameters.param1,parameters.param2,-800,parameters.param2);
+            }
+            else{
+              line(parameters.param1,parameters.param2,800,parameters.param2);
+            }
             
-            line(parameters.param1,parameters.param2,800,parameters.param2);
           }
     
           else{
@@ -157,7 +176,6 @@ function DibujarRay(parameters){
     }
   
   }
-
 
 function DibujareEllipse(parameters){
   //frameRate(1);
