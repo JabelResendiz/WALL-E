@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "A3ofTh4Tj/upvO/sZ7LIeXIjKU9jzFfpLejnfV6Wx0Vl2uvEjYBPPdIxzeNKTcSAaEWtKop9kfgMvu7HEOB/2A==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\HP\\Documents\\GEO WALL_E\\WALL-E\\BlazorServerApp\\BlazorServer\\BlazorServer.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\HP\\.nuget\\packages\\microsoft.jsinterop\\7.0.0\\microsoft.jsinterop.7.0.0.nupkg.sha512"
+  ],
+  "logs": []
+}
