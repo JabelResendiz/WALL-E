@@ -1,5 +1,5 @@
 
-namespace InterpreterDyZ;
+namespace GOLenguage;
 
 using System.Runtime.CompilerServices;
 using Microsoft.JSInterop;
@@ -17,16 +17,16 @@ using Microsoft.JSInterop;
 
 
           _jsRuntime=jsRuntime;
-          try
+         try
           {
             Method();
           }
-          catch(Exception ex){
+         catch(Exception ex){
             Console.WriteLine("An error has ocurred in your program");
             Functiones.Clear();
             COLOR.stackColor.Clear();
             Interpreter.Scope.Clear();
-          }
+         }
             
             //Console.ForegroundColor= ConsoleColor.Red;
             

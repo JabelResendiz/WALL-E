@@ -1,6 +1,5 @@
 
-namespace InterpreterDyZ;
-
+namespace GOLenguage;
 
 
 #region FunctionWAllE
@@ -18,6 +17,10 @@ public class FunctionWALLE:AST {
         this.second=second;
     }
 
+    public object Count(SEQUENCE k){
+        return k.count;
+    }
+
     public double Measure(POINT p1,POINT p2){
         
         return Math.Sqrt(Math.Pow(p1.param1-p2.param1,2)+ Math.Pow(p1.param3-p2.param3,2));
@@ -28,7 +31,7 @@ public class FunctionWALLE:AST {
         List<object> lista= new List<object>();
         
 
-        if((int)Enum.Parse(typeof(WalleFigures),f1.ToString()!.Substring(15)) > (int)Enum.Parse(typeof(WalleFigures),f2.ToString()!.Substring(15)) )
+        if((int)Enum.Parse(typeof(WalleFigures),f1.ToString()!.Substring(11)) > (int)Enum.Parse(typeof(WalleFigures),f2.ToString()!.Substring(11)) )
 {
     
     FIGURE s= f1;

@@ -1,7 +1,6 @@
 ﻿
 
 
-
 mediatrix(p1, p2) = 
     let
         l1 = line(p1, p2);
@@ -10,7 +9,9 @@ mediatrix(p1, p2) =
         c2 = circle (p2, m);
         i1,i2,_ = intersect(c1, c2);
     in line(i1,i2);
-    
+
+
+
 regularTriangle(p,m) =
     let
         point p2;
@@ -22,10 +23,18 @@ regularTriangle(p,m) =
         i3,i4,_ = intersect(c2,c1);
         i5,i6,_ = intersect(c3,c1);
     in {i1,i5,i6};  
-    
-divideTriangle(p1,p2,p3,m1) = if (measure(p1,p2)/m1) < 15 then {} else  
+
+divideTriangle(p1,p2,p3,m1) = if (measure(p1,p2)/m1) < 5 then {} else  
    let
-      draw {segment(p1,p2),segment(p2,p3),segment(p3,p1)};
+      draw {segment(p1,p2)};
+      restore;
+      color blue;
+      restore;
+      draw {segment(p2,p3)};
+      color red;
+      draw{segment(p3,p1)};
+      restore;
+
       mid1,_ = intersect(mediatrix(p1,p2),line(p1,p2));
       mid2,_ = intersect(mediatrix(p2,p3),line(p2,p3));
       mid3,_ = intersect(mediatrix(p1,p3),line(p1,p3));
@@ -44,5 +53,5 @@ sierpinskyTriangle(p,m) =
 pu1 = point(300,0);
 pu2 = point(0,0);
 m = measure(pu1,pu2);
-
+color green;
 a = sierpinskyTriangle(point(450,300),m);

@@ -1,9 +1,8 @@
-
-
-namespace InterpreterDyZ;
-
+namespace GOLenguage;
 using Microsoft.JSInterop;
 
+
+// espacio para guardar las clases de los tipos de Variables (Num,Cadene,Bool) ,Figure (point,circle...) y Color
 
 #region SuperClass Variables
 
@@ -54,16 +53,15 @@ public class Empty : Variables
 #endregion
 
 
-
 #region Figure
 
 
 public interface IDraw{
     
     
-    void Draw();
+    void Draw(string tag);
     //object Function();
-    string Name();
+
 }
 
 
@@ -108,29 +106,25 @@ public class FIGURE:AST{
         if(this is POINT){
 
             param1=Convert.ToDouble(first);
-            //firstParam= new Num(new Token(TokenTypes.NUMBER,param1));
+            
             
         }
         else{
             param1= ((POINT)first).param1;
             param2=((POINT)first).param3;
-            //param1= (double)((Num)((POINT)first).firstParam).Value;
-            //param2=(double)((Num)((POINT)first).secondParam).Value;
-
-            //firstParam=new POINT(null,new Num(new Token(TokenTypes.NUMBER,param1)), new Num(new Token(TokenTypes.NUMBER,param2)));
+            
         }
 
         if(this is POINT || this is CIRCLE){
 
             param3=Convert.ToDouble(second);
-            //secondParam= new Num(new Token(TokenTypes.NUMBER,param3));
+            
         }
         else{
+
             param3= ((POINT)second).param1;
             param4=((POINT)second).param3;
-            //param3= (double)((Num)((POINT)second).firstParam).Value;
-            //param4=(double)((Num)((POINT)second).secondParam).Value;
-            //secondParam=new POINT(null,new Num(new Token(TokenTypes.NUMBER,param3)),new Num(new Token(TokenTypes.NUMBER,param4)));
+            
         }
 
     }
@@ -142,25 +136,24 @@ public class POINT : FIGURE,IDraw{
     
     public POINT(Token name,AST firstParam,AST secondParam) :base(name,firstParam,secondParam){}
 
-    public async void Draw(){
+    public async void Draw(string tag){
         
         Console.WriteLine($"Drawing a point ... ");
         Console.WriteLine($"{param1};{param3}");
         var parameters = new{
             param1,
-            param3
+            param3,
+            tag,
         };
         await Principal._jsRuntime.InvokeAsync<object>("DibujarePoint",parameters);
     }
-    public string Name(){
-        return (string)Token.Value;
-    }
+    
 }
 
 public class CIRCLE : FIGURE,IDraw{
     
     public CIRCLE(Token name,AST firstParam,AST secondParam) :base(name,firstParam,secondParam){}
-    public async void Draw(){
+    public async void Draw(string tag){
         
 
         Console.WriteLine($"Drawing a circle ... ");
@@ -169,14 +162,12 @@ public class CIRCLE : FIGURE,IDraw{
             param1,
             param2,
             param3,
+            tag
         };
         await Principal._jsRuntime.InvokeAsync<object>("DibujareEllipse",parameters);
     }
-    public string Name(){
-        return (!(Token is null))?(string)Token.Value :"";
-    }
+    
 }
-
 
 public class LINE : FIGURE,IDraw{
     
@@ -184,7 +175,7 @@ public class LINE : FIGURE,IDraw{
     
     // expresion que constituye una nueva lista de instrucciones
     
-    public async void Draw(){
+    public async void Draw(string tag){
         
 
         Console.WriteLine($"Drawing a line ... ");
@@ -193,25 +184,22 @@ public class LINE : FIGURE,IDraw{
             param1,
             param2,
             param3,
-            param4
+            param4,
+            tag
         };
 
         Console.WriteLine($"{param1};{param2};{param3};{param4}");
         await Principal._jsRuntime.InvokeAsync<object>("DibujarLine",parameters);
     }
 
-    public string Name(){
-        
-        return (!(Token is null))?(string)Token.Value :"";
-    }
+    
 }
-
 public class SEGMENT : FIGURE,IDraw{
    
     
     public SEGMENT(Token name,AST firstParam,AST secondParam) :base(name,firstParam,secondParam){}
         
-    public async void Draw(){
+    public async void Draw(string tag){
         
 
         Console.WriteLine($"Drawing a segment ... ");
@@ -220,26 +208,23 @@ public class SEGMENT : FIGURE,IDraw{
             param1,
             param2,
             param3,
-            param4
+            param4,
+            tag
         };
 
         Console.WriteLine($"{param1};{param2};{param3};{param4}");
         await Principal._jsRuntime.InvokeAsync<object>("DibujarSegment",parameters);
     }
 
-    public string Name(){
-        return (!(Token is null))?(string)Token.Value:"";
-    }
+    
 }
-
-
 
 public class RAY : FIGURE,IDraw{
    
     
     public RAY(Token name,AST firstParam,AST secondParam) :base(name,firstParam,secondParam){}
         
-    public async void Draw(){
+    public async void Draw(string tag){
         
 
         Console.WriteLine($"Drawing a ray ... ");
@@ -248,18 +233,46 @@ public class RAY : FIGURE,IDraw{
             param1,
             param2,
             param3,
-            param4
+            param4,
+            tag
         };
 
         Console.WriteLine($"{param1};{param2};{param3};{param4}");
         await Principal._jsRuntime.InvokeAsync<object>("DibujarRay",parameters);
     }
 
-    public string Name(){
-        return (!(Token is null))?(string)Token.Value:"";
-    }
+    
 }
 
+public class ARC:FIGURE,IDraw{
+
+    public double param5;
+    public double param6;
+    public double param7;
+    public AST thirdParam;
+    public AST measure;
+
+    public ARC(Token name,AST firstParam,AST secondParam,AST thirdParam,AST measure) :base(name,firstParam,secondParam){
+        this.thirdParam=thirdParam;
+        this.measure=measure;
+    }
+    public async void Draw(string tag){
+        
+
+        Console.WriteLine($"Drawing an arc ... ");
+        
+        var parameters = new{
+            param1,
+            param2,
+            param3,
+            param4,
+            tag
+        };
+
+        Console.WriteLine($"{param1};{param2};{param3};{param4}");
+        await Principal._jsRuntime.InvokeAsync<object>("DibujarRay",parameters);
+    }
+}
 #endregion
 
 

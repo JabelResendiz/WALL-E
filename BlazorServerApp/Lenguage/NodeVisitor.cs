@@ -1,6 +1,5 @@
 
-
-namespace InterpreterDyZ;
+namespace GOLenguage;
 
 public abstract class NodeVisitor 
 {

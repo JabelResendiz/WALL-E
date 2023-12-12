@@ -1,7 +1,7 @@
 
 
 
-namespace InterpreterDyZ;
+namespace GOLenguage;
 
 using System.Runtime.CompilerServices;
 using System.Runtime.Intrinsics.Arm;
@@ -15,17 +15,13 @@ public class Interpreter : NodeVisitor
     
     private double recursiveCount;
     private Parser? Parser;
-    public static Dictionary<string, object> Scope;// variables declaradas con let (no puede ser global en todo el programa)
-    //public Dictionary<string,AST>Function= new Dictionary<string, AST>();
-
+    public static Dictionary<string, object> Scope;
     
-    //public ReservateKeywords reserved= new ReservateKeywords();
-    //public Principal principal= new Principal();
     public Interpreter(Parser parser)
     {
         
         Parser = parser;
-        Scope = new Dictionary<string, object>();// esto es una variable local
+        Scope = new Dictionary<string, object>();
         
         appendText();// inicializando el lienzo una sola vez
     }
@@ -42,10 +38,8 @@ public class Interpreter : NodeVisitor
     #region 2 Evaluador de cada nodo del AST
     //evaluador de una funcion logaritmo
 
-
-    // metodo llamado para inicalizar el lienzo de la function setup de la liberia P5.JS
  
-
+    // metodo llamado para inicalizar el lienzo de la function setup de la liberia P5.JS
     public async void appendText(){
         
         try{
@@ -53,14 +47,12 @@ public class Interpreter : NodeVisitor
         }
 
         catch(TaskCanceledException){
-            Console.WriteLine("wtf men 123445567890-48958309485093840958");
+            Console.WriteLine("ERROR BlazorServer : Instruccions in connection with JSInterop are falling");
         }
     }
 
     public override object VisitColor(COLOR node,Dictionary<string,object>Scope){
 
-        
-        
         if(node.token is TokenTypes.COLOR){
 
             node.Push();
@@ -98,7 +90,11 @@ public class Interpreter : NodeVisitor
             SemanticError($"{((first is FIGURE) ? second : first)} is not a figure");
             
         }
-
+        else if(node.token.Type== TokenTypes.COUNT){
+            
+            if(first is List<object> || first is Sequence)
+                return (first is List<object>)? ((List<object>)first).Count() : ((Sequence)first).count2;
+        }
         return 0;
     }
     public override object VisitSequenceFinite(SEQUENCE node, Dictionary<string, object> Scope)
@@ -211,7 +207,7 @@ public class Interpreter : NodeVisitor
 
         void Drawing(object g){
             if(g is IDraw){
-                 ((IDraw)g).Draw();
+                 ((IDraw)g).Draw(node.tag);
             }
             else{
                 SemanticError($"Variable \"{g}\" cannot be draw");

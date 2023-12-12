@@ -1,7 +1,7 @@
-namespace InterpreterDyZ;
+namespace GOLenguage;
 
 
-// enum de todos los tokens permitidos por la gramatica
+// enum de todos los tokens y los colores permitidos por la gramatica 
 public enum TokenTypes {
 
     #region Types of Datas
@@ -74,9 +74,7 @@ public enum TokenTypes {
     RESTORE,
     
     #endregion
-    #region Colors
-    blue,red,yellow,green,cyan,gray,white,magenta,black,
-    #endregion
+    
     #region Funciones
 
     INTERSECT,
@@ -106,6 +104,7 @@ public enum TokenTypes {
     LOG,
     REST,
     THREEPOINT,
+    IMPORT,
     
     #endregion
 }

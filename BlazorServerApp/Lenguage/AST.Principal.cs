@@ -1,5 +1,4 @@
-
-namespace InterpreterDyZ;
+namespace GOLenguage;
 
 public class AST
 {
@@ -146,6 +145,9 @@ public class Draw:AST{
         if(tag!=null){
              this.tag=(string)tag.Value;// lanzar un error al castear una variable
         }
+       else{
+        this.tag="";
+       }
        
     }
 }

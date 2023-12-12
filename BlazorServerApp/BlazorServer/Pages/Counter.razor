@@ -1,15 +1,15 @@
 ﻿@page "/Graph"
-@using InterpreterDyZ;
+@using GOLenguage;
 @inject IJSRuntime JS
 
-<PageTitle>Counter</PageTitle>
+<PageTitle>GeoWallE</PageTitle>
 
 <style>
 
     body{
         display:flex;
         justify-content: center;
- 
+
         min-height: 100vh;
         background: url('../css/otra.jpg') no-repeat;
         background-size: cover;
@@ -21,6 +21,7 @@
         position: absolute;
         align: center;
         width: 500px;
+        max-height: 650px;
         height: 550px;
         background: rgba(255,255,255,.1);
         box-shadow: 0 25px 45px rgba(0,0,0,.2);
@@ -35,10 +36,35 @@
         color: white;
         margin:10px;
     }
+    .answer{
 
-    .input{
+        position: absolute;
+        top:650px;
+        width: 500px;
+        max-height: 300px;
+        height: 270px;
+
+        background: rgba(255,255,255,.1);
+        box-shadow: 0 25px 45px rgba(0,0,0,.2);
+        border-radius: 50px;
+        border:2px solid rgba(255,255,255,.5);
+        border-right: 2px solid rgba(255,255,255,.2);
+        border-bottom: 2px solid rgba(255,255,255,.2);
+        backdrop-filter: blur(10px);
+
+        font-size:20px;
+        font-family: Georgia, 'Times New Roman', Times, serif;
+        color: white;
+        margin:10px;
+    
+    }
+
+
+
+
+    .graph{
         top:50%;
-        left:50%;
+        left:30%;
         position:absolute;
         height:40px;
         width:80px;
@@ -46,8 +72,23 @@
         color:white;
         background: #3498db;
         border: 1px solid transparent;
-        padding:12px 30px;
-        line-height:1.4;
+        font-size:14px;
+        font-weight:500;
+        border-radius:30px;
+        text-transform: uppercase;
+        transition:all .55s ease;
+    }
+
+    .remove{
+        top:30%;
+        left:30%;
+        position:absolute;
+        height:40px;
+        width:80px;
+        display:inline-block;
+        color:white;
+        background: #3498db;
+        border: 1px solid transparent;
         font-size:14px;
         font-weight:500;
         border-radius:30px;
@@ -59,19 +100,20 @@
 
 
 
-<textarea class="tarea" @bind="Text" rows="10" cols="50" >Introduzca su busqueda
+<textarea class="tarea" @bind="Text" rows="10" cols="50" >Write Here!
 
 
 </textarea>
 
-<button type="default" class="input" @onclick="Resultado">Go WallE</button>
-<button type="default" class="input" @onclick="Resultado">RemoveAll</button>
-
-<div id="p-container">
-
-</div>
+<button type="default" class="graph" @onclick="Resultado">Graph</button>
+<button type="default" class="remove" @onclick="Remove">Remove</button>
 
 
+
+<textarea class="answer" @bind="Text" rows="10" cols="50" >Answer!
+
+
+</textarea>
 
 @code {
 
@@ -80,15 +122,18 @@
     public void Resultado(){
         Principal.Text=Text;
 
-        Console.WriteLine("opopo");
+        Console.WriteLine("Start !");
         try{
             Principal.Principal2(JS);
         }
-        catch(Exception ex){
-            Console.WriteLine("An error has ocurred in your program");
+       catch(Exception ex){
+           Console.WriteLine("An error has ocurred in your program");
             
-        }
+       }
         currentCount++;
+    }   
+    private void Remove(){
+        Text="";
     }
 }
 

@@ -1,7 +1,7 @@
 
 using System.Collections;
 
-namespace InterpreterDyZ;
+namespace GOLenguage;
 
 public class Parser
 {
@@ -355,9 +355,9 @@ public class Parser
 
             node= CallFunction();
         
-        else if(CurrentToken.Type==TokenTypes.MEASURE || CurrentToken.Type==TokenTypes.INTERSECT)
+        else if(CurrentToken.Type==TokenTypes.MEASURE || CurrentToken.Type==TokenTypes.INTERSECT || CurrentToken.Type==TokenTypes.COUNT)
         
-            node=Measure();
+            node=WalleFunction();
 
          else if(CurrentToken.Type == TokenTypes.POINT)
             node = Point();
@@ -373,6 +373,9 @@ public class Parser
 
         else if(CurrentToken.Type == TokenTypes.RAY)
             node = Ray();
+
+        else if (CurrentToken.Type== TokenTypes.ARC)
+            node=Arc();
 
         else if(CurrentToken.Type == TokenTypes.L_KEY)
             node= Sequence();
@@ -397,7 +400,8 @@ public class Parser
         else if(CurrentToken.Type==TokenTypes.ID && Lexer.SeeNextTokenParenthesis())
 
             node= Function();
-
+        else if (CurrentToken.Type==TokenTypes.IMPORT)
+            Import();
         
 
         else if(CurrentToken.Type== TokenTypes.DRAW)
@@ -423,7 +427,32 @@ public class Parser
     // En cada metodo se creara una instancia de AST
 
     // Metodo para funcion seno 
-    
+    private void Import(){
+        Process(TokenTypes.IMPORT,"");
+
+        if(CurrentToken.Type==TokenTypes.STRING) // cambiar ID por string
+        { 
+            string path=$"../Tests/{(string)CurrentToken.Value}";
+            
+            string j="";
+            try{
+                using (StreamReader sr= new StreamReader(path)){
+                    j= sr.ReadToEnd();
+                }
+            }// DirectoryNot
+            catch(Exception ex){
+                SyntaxError($"{ex.Message}");
+            }
+            Lexer.Text= j+Lexer.Text.Substring(Lexer.Pos+1);
+            Lexer.Pos=-1;
+            Process(CurrentToken.Type,"");
+            //Console.WriteLine(Lexer.Text);
+            
+        }
+
+        else SyntaxError($"Invalid Token {CurrentToken.Value}.\"String \" expected");
+        
+    }
     private AST Color(){
 
     AST node = new AST();
@@ -458,13 +487,13 @@ public class Parser
     private AST Draw(){
         AST node= new AST();
 
-        Process(TokenTypes.DRAW,"draw");
+        Process(TokenTypes.DRAW,"");
         AST token= Statement();
         
         //Process(TokenTypes.ID,"id");
         if(CurrentToken.Type==TokenTypes.STRING){
              Token token2=CurrentToken;
-            Process(TokenTypes.STRING,"string");
+            Process(TokenTypes.STRING,"");
             node=new Draw(token,token2);
             return node;
         }
@@ -472,27 +501,26 @@ public class Parser
         return node;
     }
 
-
     private AST Ray(){
         AST node = new AST();
         
-        Process(TokenTypes.RAY,"segment");
+        Process(TokenTypes.RAY,"");
         if(CurrentToken.Type== TokenTypes.ID){
 
         
          Token token= CurrentToken;
          
-        Process(TokenTypes.ID,"ID");
-        //Process(TokenTypes.L_PARENT,$" open parenthesis before \"cos\" function args. Col {Lexer.Pos-CurrentToken.Value.ToString().Length}");
+        Process(TokenTypes.ID,"");
+        
         node = new RAY(token,null,null);
-        //Process(TokenTypes.R_PARENT,$" closed parenthesis after \"cos\" function args . Col {Lexer.Pos-CurrentToken.Value.ToString().Length}");
+        
         return node;
         }
-        Process(TokenTypes.L_PARENT,"parent");
+        Process(TokenTypes.L_PARENT,$" open parenthesis before \" ray \" declaration");
         AST token1= Compounds();
         Process(TokenTypes.COMMA,"comma");
         AST token2=Compounds();
-        Process(TokenTypes.R_PARENT,"parent");
+        Process(TokenTypes.R_PARENT,$" closed parenthesis after expressions \" ray \" declaration");
         node=new RAY(null,token1,token2);
         return node;
     }
@@ -500,20 +528,20 @@ public class Parser
     private AST Point(){
         AST node = new AST();
         
-        Process(TokenTypes.POINT,"Sen");
+        Process(TokenTypes.POINT,"");
         //Process(TokenTypes.ID,$" open parenthesis before \"sen\" function args .Col {Lexer.Pos-CurrentToken.Value.ToString().Length}");
         if(CurrentToken.Type==TokenTypes.ID){
             Token token= CurrentToken;
-            Process(TokenTypes.ID,"ID");
+            Process(TokenTypes.ID,"");
             node = new POINT(token,null,null);
             return node;
         }
         
-        Process(TokenTypes.L_PARENT,"parent");
+        Process(TokenTypes.L_PARENT,$" open parenthesis before \" point \" declaration");
         AST token1= Compounds();
         Process(TokenTypes.COMMA,"comma");
         AST token2=Compounds();
-        Process(TokenTypes.R_PARENT,"parent");
+        Process(TokenTypes.R_PARENT,$" closed parenthesis after expressions \" point \" declaration");
         node=new POINT(null,token1,token2);
         return node;
     }
@@ -521,45 +549,71 @@ public class Parser
     private AST Circle(){
         AST node = new AST();
         
-        Process(TokenTypes.CIRCLE,"Cos");
+        Process(TokenTypes.CIRCLE,"");
         if(CurrentToken.Type==TokenTypes.ID){
             Token token= CurrentToken;
-        Process(TokenTypes.ID,"ID");
+        Process(TokenTypes.ID,"");
         //Process(TokenTypes.L_PARENT,$" open parenthesis before \"cos\" function args. Col {Lexer.Pos-CurrentToken.Value.ToString().Length}");
         node = new CIRCLE(token,null,null);
         return node;
         }
-        Process(TokenTypes.L_PARENT,"parent");
+        Process(TokenTypes.L_PARENT,$" open parenthesis before \" circle \" declaration");
         AST token1= Compounds();
         Process(TokenTypes.COMMA,"comma");
         AST token2=Compounds();
-        Process(TokenTypes.R_PARENT,"parent");
+        Process(TokenTypes.R_PARENT,$" closed parenthesis after expressions \" circle \" declaration");
         node=new CIRCLE(null,token1,token2);
         return node;
         //Process(TokenTypes.R_PARENT,$" closed parenthesis after \"cos\" function args . Col {Lexer.Pos-CurrentToken.Value.ToString().Length}");
         
     }
+    private AST Arc(){
+        AST node = new AST();
+        
+        Process(TokenTypes.ARC,"");
 
+        if(CurrentToken.Type==TokenTypes.ID){
+            Token token= CurrentToken;
+            Process(TokenTypes.ID,"");
+        
+            node = new ARC(token,null,null,null,null);
+            return node;
+        }
+
+        Process(TokenTypes.L_PARENT,$" open parenthesis before \" arc \" declaration");
+        AST token1= Compounds();
+        Process(TokenTypes.COMMA,"comma");
+        AST token2=Compounds();
+        Process(TokenTypes.COMMA,"comma");
+        AST token3=Compounds();
+        Process(TokenTypes.COMMA,"comma");
+        AST token4=Compounds();
+        Process(TokenTypes.R_PARENT,$" closed parenthesis after expressions \" arc \" declaration");
+        node=new ARC(null,token1,token2,token3,token4);
+        return node;
+        //Process(TokenTypes.R_PARENT,$" closed parenthesis after \"cos\" function args . Col {Lexer.Pos-CurrentToken.Value.ToString().Length}");
+        
+    }
     private AST Segment(){
         AST node = new AST();
         
-        Process(TokenTypes.SEGMENT,"segment");
+        Process(TokenTypes.SEGMENT,"");
         if(CurrentToken.Type== TokenTypes.ID){
 
         
          Token token= CurrentToken;
          
-        Process(TokenTypes.ID,"ID");
-        //Process(TokenTypes.L_PARENT,$" open parenthesis before \"cos\" function args. Col {Lexer.Pos-CurrentToken.Value.ToString().Length}");
+        Process(TokenTypes.ID,"");
+        
         node = new SEGMENT(token,null,null);
-        //Process(TokenTypes.R_PARENT,$" closed parenthesis after \"cos\" function args . Col {Lexer.Pos-CurrentToken.Value.ToString().Length}");
+       
         return node;
         }
-        Process(TokenTypes.L_PARENT,"parent");
+        Process(TokenTypes.L_PARENT,$" open parenthesis before \" segment \" declaration");
         AST token1= Compounds();
         Process(TokenTypes.COMMA,"comma");
         AST token2=Compounds();
-        Process(TokenTypes.R_PARENT,"parent");
+        Process(TokenTypes.R_PARENT,$" closed parenthesis after expressions \" segment \" declaration");
         node=new SEGMENT(null,token1,token2);
         return node;
     }
@@ -568,23 +622,23 @@ public class Parser
         
         AST node = new AST();
         
-        Process(TokenTypes.LINE,"segment");
+        Process(TokenTypes.LINE,"");
         if(CurrentToken.Type== TokenTypes.ID){
 
         
          Token token= CurrentToken;
          
-        Process(TokenTypes.ID,"ID");
-        //Process(TokenTypes.L_PARENT,$" open parenthesis before \"cos\" function args. Col {Lexer.Pos-CurrentToken.Value.ToString().Length}");
+        Process(TokenTypes.ID,"");
+        
         node = new LINE(token,null,null);
-        //Process(TokenTypes.R_PARENT,$" closed parenthesis after \"cos\" function args . Col {Lexer.Pos-CurrentToken.Value.ToString().Length}");
+       
         return node;
         }
-        Process(TokenTypes.L_PARENT,"parent");
+        Process(TokenTypes.L_PARENT,$" open parenthesis before \" line \" declaration");
         AST token1= Compounds();
         Process(TokenTypes.COMMA,"comma");
         AST token2=Compounds();
-        Process(TokenTypes.R_PARENT,"parent");
+        Process(TokenTypes.R_PARENT,$" closed parenthesis after expressions \" line \" declaration");
         node=new LINE(null,token1,token2);
         return node;
     }
@@ -660,16 +714,20 @@ public class Parser
         return node ;
     }
 
-    public AST Measure(){
+    public AST WalleFunction(){
         Token token= CurrentToken;
-        Process(CurrentToken.Type,"measure");
-        Process(TokenTypes.L_PARENT,"open parenthesis before \"measure \" function args ");
+        Process(CurrentToken.Type,"Invalid Token");
+        Process(TokenTypes.L_PARENT,$"open parenthesis before \" {token.Value} \" function args ");
         
         AST first= Compounds();
+        AST second= new AST();
 
-        Process(TokenTypes.COMMA,"Function args must be separated by commas");
+        if(token.Type!=TokenTypes.COUNT){
+            Process(TokenTypes.COMMA,"Function args must be separated by commas");
 
-        AST second= Compounds();
+            second= Compounds();
+        }
+        
 
         Process(TokenTypes.R_PARENT,"closed parenthesis after \"measure \" function args");
 
@@ -757,21 +815,6 @@ public class Parser
         return node;
     }
 
-// metodo para la asignacion de variables
-
-/*
-    private AST AssignmentDecl()
-    {
-        
-        AST node = Variable();
-        Token token = new Token(CurrentToken);
-        Process(TokenTypes.ID,$"variable name .Col {Lexer.Pos-CurrentToken.Value.ToString().Length}");
-        Process(TokenTypes.ASSIGN,$" \"equal\" sign to declare variable. Col {Lexer.Pos-CurrentToken.Value.ToString().Length}");
-        
-        return new Assign((Var)node, token, Compounds());
-    }
-
-    */
     private AST Assignment(){
         
         Token token = new Token(CurrentToken);// se guarda el token
@@ -847,16 +890,11 @@ public class Parser
     private AST Conditional()
     {
         Process(TokenTypes.IF,"IF" );
-        //Process(TokenTypes.L_PARENT,$"open parenthesis before \"if\" function args .Col {Lexer.Pos-CurrentToken.Value.ToString().Length}");
+        
 
         AST node = Statement();
 
-        //Process(TokenTypes.R_PARENT,$"closed parenthesis after \"if\" function args .Col {Lexer.Pos-CurrentToken.Value.ToString().Length}");
-        //Process(TokenTypes.L_KEYS);
-       /* if(CurrentToken.Type==TokenTypes.RETURN){
-            Process(TokenTypes.RETURN,"Return");
-        }
-        */
+        
         Process(TokenTypes.THEN,"THEN");
         AST node2= Statement();
 

@@ -1,7 +1,7 @@
 
 using System.Collections.Generic;
 using System.Collections;
-namespace InterpreterDyZ;
+namespace GOLenguage;
 
 
 
@@ -9,13 +9,13 @@ namespace InterpreterDyZ;
 
 
 public class Sequence:AST{
-    public double count2;
+    public object count2;
 }
 
 interface ISequence<T>:IEnumerable<T>,IEnumerator<T>{
 
     
-    double count{get;}
+    object count{get;}
     IEnumerator IEnumerable.GetEnumerator(){return GetEnumerator();}
     IEnumerator<T> GetEnumerator();
     bool MoveNext();
@@ -26,22 +26,16 @@ interface ISequence<T>:IEnumerable<T>,IEnumerator<T>{
 
 }
 
-
 // Finite sale de circulacion 
 public class SEQUENCE:AST{
     public List<AST> sequence;
-
+    public object count;
     public SEQUENCE(List<AST>sequence){
         
         this.sequence=sequence;
+        count=sequence.Count();
     }
 
-    public object Count() {
-        
-
-
-        return sequence.Count();
-    }
 }
 
 
@@ -100,11 +94,11 @@ public class InfiniteSequence<T>:Sequence,ISequence<Variables>{
         sequence=list.GetEnumerator();
         
 
-        count2=int.MaxValue;
+        count2=TokenTypes.UNDEFINED;
     }
     
 
-    public double count=>int.MaxValue;
+    public object count=>TokenTypes.UNDEFINED;
     public IEnumerator<Variables> GetEnumerator(){
         return new InfiniteSequence<T>(k);
     }
@@ -158,7 +152,7 @@ public class RangoSequence:Sequence,ISequence<Variables>{
         
     }
     
-    public double count=> count2;
+    public object count=> count2;
    public IEnumerator<Variables> GetEnumerator(){
 
     return new RangoSequence(start,final);

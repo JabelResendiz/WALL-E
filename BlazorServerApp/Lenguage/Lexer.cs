@@ -1,5 +1,4 @@
-namespace InterpreterDyZ;
-
+namespace GOLenguage;
 public class Lexer
 {
     public  string? Text;

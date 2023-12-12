@@ -6,32 +6,6 @@ let canvas;
 
 function setup() {
 
-  /*
-  var svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
-  svg.setAttribute("width", "200");
-  svg.setAttribute("height", "200");
-  document.body.appendChild(svg);
-  
-  // Crear el path
-  var path = document.createElementNS("http://www.w3.org/2000/svg", "path");
-  path.setAttribute("d", "M50,50 m-50,0a50,50 0 1,0 100,0a50,50 0 1,0 -100,0");
-  path.setAttribute("stroke", "black");
-  path.setAttribute("fill", "none");
-  svg.appendChild(path);
-  
-  // Animar el path
-  var length = path.getTotalLength();
-  path.style.transition = path.style.WebkitTransition = 'none';
-  path.style.strokeDasharray = length + ' ' + length;
-  path.style.strokeDashoffset = length;
-  path.getBoundingClientRect();
-  path.style.transition = path.style.WebkitTransition = 'stroke-dashoffset 3s ease-in-out';
-  path.style.strokeDashoffset = '0';
-  
-  
-  
-  */
-  
   
     canvas=createCanvas(800, 800);
     
@@ -59,37 +33,8 @@ function setup() {
   
       canvas.remove();
    
-    
-    
   }
 
-/*
-function mouseWheel(event){
-
-  if(event.deltaY>0){
-    zoom-=0.1;
-
-  }
-
-  else{
-    zoom+=0.1;
-  }
-}
-
-function keyPressed(){
-
-  if(keyCode==UP_ARROW){
-
-    zoom+=0.1;
-    zoom=constrain(zoom,0.5,2);
-  }
-  else if(keyCode==DOWN_ARROW){
-
-    zoom-=0.1;
-    zoom=constrain(zoom,0.5,2);
-  }
-}
-*/
 function DibujarLine(parameters){
 
 
@@ -118,12 +63,28 @@ function DibujarLine(parameters){
         }
   
   }
+  
+  if(parameters.tag!=""){
+    fill(0);
+    textSize(15);
+    text(parameters.tag,parameters.param1-5,parameters.param2-5);
+    noFill();
+  }
 
 }
 
 
 function DibujarSegment(parameters){
   line(parameters.param1,parameters.param2,parameters.param3 ,parameters.param4);
+  
+  
+  if(parameters.tag!=""){
+    fill(0);
+    textSize(15);
+    text(parameters.tag,parameters.param1-5,parameters.param2-5);
+    noFill();
+  }
+  
 }
 
 
@@ -174,6 +135,13 @@ function DibujarRay(parameters){
           }
     
     }
+    
+    if(parameters.tag!=""){
+      fill(0);
+      textSize(15);
+      text(parameters.tag,parameters.param1-5,parameters.param2-5);
+      noFill();
+    }
   
   }
 
@@ -181,13 +149,30 @@ function DibujareEllipse(parameters){
   //frameRate(1);
  
   ellipse(parameters.param1,parameters.param2,2*(parameters.param3),2*(parameters.param3));
+
+
+  if(parameters.tag!=""){
+    fill(0);
+    textSize(15);
+    text(parameters.tag,parameters.param1+parameters.param3,parameters.param3/2+parameters.param2);
+    noFill();
+  }
+  
 }
 
 
 function DibujarePoint(parameters){
-fill(0,0,255);
+  fill(0,0,255);
   
   point(parameters.param1,parameters.param3);
+  
+  if(parameters.tag!=""){
+    fill(0);
+    textSize(15);
+    text(parameters.tag,parameters.param1,parameters.param3);
+    
+  }
+  
   noFill();
 }
 
