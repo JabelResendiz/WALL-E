@@ -2,7 +2,8 @@ namespace GOLenguage;
 
 
 // enum de todos los tokens y los colores permitidos por la gramatica 
-public enum TokenTypes {
+public enum TokenTypes
+{
 
     #region Types of Datas
 
@@ -66,15 +67,15 @@ public enum TokenTypes {
     ARC,
     TRUE,
     FALSE,
-    
+
     #endregion
     #region Comandos
     DRAW,
     COLOR,
     RESTORE,
-    
+
     #endregion
-    
+
     #region Funciones
 
     INTERSECT,
@@ -82,7 +83,7 @@ public enum TokenTypes {
     SAMPLES,
     RANDOMS,
     MEASURE,
-    
+
     #endregion
 
     #region Auxiliars Tokens
@@ -105,11 +106,12 @@ public enum TokenTypes {
     REST,
     THREEPOINT,
     IMPORT,
-    
+
     #endregion
 }
 
-public enum ColorType{
+public enum ColorType
+{
 
     red,
     magenta,
@@ -123,11 +125,13 @@ public enum ColorType{
 }
 
 
-public enum WalleFigures{
+public enum WalleFigures
+{
 
     POINT,
     SEGMENT,
     LINE,
     RAY,
-    CIRCLE
+    CIRCLE,
+    ARC
 }

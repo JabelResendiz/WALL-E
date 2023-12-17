@@ -3,12 +3,12 @@
 public class Token
 {
     public TokenTypes Type;
-    public object Value; 
+    public object Value;
 
     public Token(TokenTypes type, object value)
     {
-        this.Type = type;
-        this.Value = value;
+        Type = type;
+        Value = value;
     }
 
     public Token(Token other)
@@ -27,7 +27,7 @@ public class Token
 // palabras reservadas del lenguaje
 public static class ReservateKeywords
 {
-    public static List<(string,TokenTypes)>tuplas= new List<(string, TokenTypes)>{
+    public static List<(string, TokenTypes)> tuplas = new List<(string, TokenTypes)>{
         ("let",TokenTypes.LET),// bien 
         ("in",TokenTypes.IN),// no
         ("if", TokenTypes.IF),// si
@@ -51,8 +51,8 @@ public static class ReservateKeywords
         ("randoms",TokenTypes.RANDOMS),
         ("print",TokenTypes.PRINT),
         ("import",TokenTypes.IMPORT),
-        
+
     };
-    public static Dictionary<string, TokenTypes> Keyword{get;set;}= tuplas.ToDictionary(t=>t.Item1,t=>t.Item2);
-    
+    public static Dictionary<string, TokenTypes> Keyword { get; set; } = tuplas.ToDictionary(t => t.Item1, t => t.Item2);
+
 }

@@ -5,27 +5,25 @@
 
 
     <style>
-        @@font-face
-        {
+        @@font-face {
             font-family: 'Walle';
             src: url('../fonts/gunship.ttf');
 
         }
+
         .container-cover {
-            left: 0px;
+            position: absolute;
             width: 100%;
             height: 500px;
-            background-image: url('../css/otra.jpg');
-            position: absolute;
+            background-image: url('../css/fondo claro.jpg');
             background-position: center;
             background-size: cover;
             background-repeat: no-repeat;
-            margin-top: auto;
         }
 
         .container-info-cover {
             max-width: 800px;
-            height: 500px;
+            height: 600px;
             margin: auto;
             text-align: center;
             align-items: center;
@@ -52,22 +50,38 @@
             font-family: 'Walle';
         }
 
-        .container-content {
-            max-width: 65%;
-            margin: auto;
-            margin-top: 540px;
+        .index {
+
+
+            background: #eae9e9;
+            margin-top: 40px;
             font-family: 'Oswald', sans-serif;
+            position: absolute;
+            top: 650px;
+            height: 30px;
+            font-size: 25px;
+        }
+
+
+
+        .container-content {
+            width: 65%;
+            margin: auto;
+            margin-top: 520px;
+            font-family: 'Oswald', sans-serif;
+
 
         }
 
         article {
             width: 100%;
-            padding: 20px;
-            padding-bottom: 30px;
+            padding: 40px;
+            padding-bottom: 40px;
             box-shadow: -10px 0 -30px black;
             border-radius: 6px;
             overflow: hidden;
             position: relative;
+
         }
 
         article::before {
@@ -83,10 +97,11 @@
         article h1 {
             margin-top: 20px;
             font-weight: 500;
-            font-size: 40px;
+            font-size: 60px;
 
         }
-        article hr{
+
+        article hr {
             margin-top: 20px;
             border: none;
             height: 100px;
@@ -95,7 +110,7 @@
 
         article p {
             margin-top: 20px;
-            font-size: 18px;
+            font-size: 23px;
             color: #3c3c3c;
         }
 
@@ -103,6 +118,7 @@
             width: 100%;
             margin-top: 20px;
         }
+
 
         .container-footer {
             width: 100%;
@@ -134,24 +150,25 @@
             border-radius: 30px;
             color: #a2a2a2;
         }
-        .container-footer footer hr{
+
+        .container-footer footer hr {
             margin-top: 20px;
             border: none;
             height: 1px;
             background-color: rgb(186, 186, 186);
         }
-        .container-footer h4{
+
+        .container-footer h4 {
             text-align: center;
             margin-top: 40px;
             color: #8e8e8e;
         }
-        .container-footer h5{
+
+        .container-footer h5 {
             text-align: center;
             margin-top: 7px;
             color: #8e8e8e;
         }
-        
-
     </style>
 </head>
 
@@ -160,72 +177,166 @@
     <div class="container-cover">
         <div class="container-info-cover">
             <h1>WALL.E</h1>
-            <p>Aqui va un resumen del proyecto</p>
+            <p>This time with Geometry</p>
         </div>
 
     </div>
 
+
+
+
+
     <div class="container-content">
         <article>
-            <h1>Indice</h1>
+
+
+            <h1 id="section1">Hello there!</h1>
             <p>
-                
+
+
+                WallE es un robot que vive en la Tierra, un planeta abandonado y lleno de basura. Su trabajo es
+                compactar la basura en cubos y apilarlos. A WallE le gusta su trabajo, pero también se siente solo y
+                aburrido.
+
+                Un día, WallE descubre que puede dibujar figuras geométricas con sus movimientos. Por ejemplo, cuando
+                gira sobre sí mismo, dibuja un círculo. Cuando se mueve en línea recta, dibuja un segmento. Cuando
+                cambia de dirección, dibuja un ángulo. Cuando repite un patrón, dibuja un polígono.
+
+                WallE se divierte mucho con este descubrimiento. Empieza a dibujar figuras geométricas por todas partes,
+                usando la basura como lienzo. Dibuja círculos con latas, triángulos con cartones, cuadrados con cajas,
+                rectángulos con botellas, pentágonos con tapas, hexágonos con neumáticos, y así sucesivamente.
+
+                WallE también aprende los nombres de las figuras geométricas, gracias a un viejo libro que ha encontrado
+                (en efecto es un libro no un viejo casete ). El libro se llama" Geometría Vectorial " y tiene muchas
+                ilustraciones y ejemplos. WallE lo lee con atención y memoriza los conceptos.
+
+
             </p>
+
+
+            <h1 id="section2">Lenguage</h1>
+            <p>
+                WallE tiene una habilidad especial: puede entender y ejecutar un lenguaje de programación llamado G#,
+                que le permite dibujar figuras geométricas en un lienzo con solo escribir unas líneas de código.
+
+                G# es un lenguaje de programación simple y poderoso, que usa los códigos G para controlar el movimiento
+                y la posición de WallE,
+            </p>
+            <p>
+                . El lenguaje G# es un lenguaje funcional que se compone de una lista de instrucciones separadas por
+                ‘;’. Las instrucciones permiten recibir argumentos de
+                entrada, importar otros códigos que en medida no sabemos si le son enviados de la nave espacial llamada
+                Axiom , definir funciones o constantes, configurar características del visor y dibujar objetos
+                geométricos. El lenguaje trabaja leyendo las instrucciones y a través de una jerarquía de clases realiza
+                un Análisis de los Token especiales de cada instrucción , y a través de la técnica de Parsing Recursivo
+                Descedente crea un AST (árbol de análisis sintáctico) desde las nodos superiores y luego sus nodos
+                hijos. El árbol es evaluado posteriormente pero esta vez desde los nodos inferiores u hojas , llamados
+                símbolos terminales , que son realmente los que guardan valores en memoria y devuelven esos valores a
+                sus nodos padres para que estos
+                a su vez continuen ese proceso , evaluarse a si mismo con la información que obtuvo de sus nodos hijos y
+                entregarle un valor a su Nodo Padre. Continuará Recursivamente evaluándose así hasta que se llegue a la
+                copa del AST y se decida una de tres instrucciones fisicas para WallE:
+            <ul style="font-size:23px">1. Dibujo en el lienzo con el que dispone </ul>
+            <ul style="font-size:23px">2. Guardar variables para su uso posterior </ul>
+            <ul style="font-size:23px">3. Imprimir en una mini consola que son parte de las funcionabilidades del
+                pequeño robot </ul>
+
+
+
+            </p>
+
+            <img src="../css/otra.jpg" alt="">
             <hr>
-            
-            <h1>Titulo del blog</h1>
+
+            <h2>Gramática seguida por el lenguaje para crear una jerarquía </h2>
             <p>
-                Para especificar las acciones que deberá realizar WallE para su análisis geométrico se utilizará un
-                lenguaje de programación denominado G#. El lenguaje G# es un lenguaje funcional que no permite
-                VARIABLES1
-                . Un programa en G# se compone de una lista de instrucciones separadas por ‘;’. Las instrucciones
-                permiten recibir
-                argumentos de entrada, importar otros códigos, definir funciones o constantes, configurar
-                características del visor y
-                dibujar objetos geométricos.
-            </p>
-            
-            
-            <h1>Otra talla</h1>
-            <p>
-                No pueden existir dos argumentos con igual nombre y de distintos tipos. Los argumentos pueden requerirse
-                en cualquier lugar del código pero serán provistos por la aplicación antes de la ejecución, sin importar
-                si
-                la ejecución termina requiriéndolos finalmente o no (por ejemplo, están dentro de una función que no se
-                evalúa
-                nunca). Un argumento se puede pedir varias veces en un mismo ámbito, pero no se puede referir si no está
-                declarado
-                en el ámbito actual o en algún ámbito padre. Por ejemplo, una función puede indicar que hace uso de un
-                punto
-                recibido como argumento de nombre p1, y luego en otro ámbito fuera de la función si se requiere trabajar
-                con
-                dicho punto se deberá indicar nuevamente.
-            </p>
-            <p>
-                Los comandos color y restore permite escoger un color temporalmente a ser utilizado para los dibujos y
-                luego restaurar el estado al color anterior. Los colores posibles son: blue, red, yellow, green, cyan,
-                magenta,white, gray,black. En un inicio el color con que se dibuja en el lienzo es negro. Si se han
-                restaurado todos los
-                colores “apilados”con el comando color, entonces restore no tiene efecto.
-            </p>
-            <h1>Muela</h1>
-            <p>
-                WallE no conoce las coordenadas de un punto, pero puede utilizar el compás para señalar una medida entre
-                dos puntos. Esta medida puede utilizarse para trazar una circunferencia en cualquier posición, para
-                comparar
-                con otra medida (si se tiene que abrir más o menos el compás para encajar con otro par de puntos).
-            </p>
-            <h1>Mas muela</h1>
-            <p>
-                Para ello en el lenguaje se debe realizar una inferencia de los tipos de las expresiones. A diferencia
-                de otros lenguajes en los que las variables, parámetros y retornos de función tienen declarado los
-                tipos, en G# solo se
-                conoce los tipos de los argumentos de la aplicación (point, line, segment, etc.) y de las funciones
-                intrínsecas
-                (intersect, count, randoms, etc.)
-            </p>
+                <code><span style="color: blue;">program</span> : statement_list</code><br>
+                <code><span style="color: blue;">statement_list</span> : statement (SEMI statement)*</code><br>
+                <code><span style="color: blue;">statement</span> : assignment | color | restore | function | import | draw | compounds</code><br>
+                <code><span style="color: blue;">declarations</span>  : LET + statement (SEMI statement)* + IN + statement </code><br>
+                <code><span style="color: blue;">assignment</span> : ID (COMMA ID)* + ASSIGN + compounds</code><br>
+                <code><span style="color: blue;">conditionals</span> : IF + compounds + R_PARENT + THEN + statement + ELSE + statement</code><br>
+                <code><span style="color: blue;">functions</span>  :ID + L_PARENT + ID (COMMA ID)* + R_PARENT + EQUAL + statement</code><br>
+                <code><span style="color: blue;">call_functions</span> : L_PARENT + compounds (COMMA compounds)* + R_PARENT</code><br>
+                <code><span style="color: blue;">print</span>: PRINT + compounds </code><br>
+                <code><span style="color: blue;">compounds</span> : comp + ((AND | OR | NOT) comp)*</code><br>
+                <code><span style="color: blue;">comp</span>  : expr+ ((SAME | DIFFERENT | LESS | GREATER | LESS_EQUAL | GREATER_EQUAL | NOT ) expr)*</code><br>
+                <code><span style="color: blue;">expr</span>  : term+ ((PLUS| MINUS) term)* </code> <br>
+                <code><span style="color: blue;">term</span> : factor+ ((MUL| DIV| MOD) factor)* </code> <br>
+                <code><span style="color: blue;">factor</span> :functionWallE 
+           | PLUS factor
+           | MINUS factor
+           | NUMBER
+           | STRING
+           | BOOLEAN
+           | PI
+           | ID
+           | TRUE
+           | FALSE
+           | L_PARENT compounds R_PARENT
+
+ </code><br>
+                <code> <span style="color: blue;">functionWallE</span> : declarations 
+                        |conditionals
+                        |print
+                        |call_functions
+                        |walle_functions
+                        |figures
+                        |sequence
+ </code>
 
 
+            </p>
+            <h1 id="section3"> Canvas </h1>
+            <p>
+                Tienes la posibilidad de interactuar con el WallE (sin romperlo) y te brindan un área de texto que verás
+                cuando cargues la página de la <a href="http://localhost:5284/Graph">Graficadora</a>,( sí el icono del
+                lapiz que aparece en la esquina superior derecha )
+                y puedes procederle a darle las instrucciones a WallE, que esperará a que hagas 'Click' sobre el botón
+                de "Graph" para activar un lienzo. Si alguna(s) instrucción(es) incluyen dibujar figuras verás el
+                trabajo de WallE dibujando y sus dotes como pintor que es.
+                Eso incluye cambiar la paleta de colores a uno de los colores : blue, red, yellow, green, cyan,
+                magenta,white, gray,
+                black. Te preguntarás entonces cómo el complejo lenguaje es capaz de enviarle misiones a las orugas del
+                robot, pues saber que la tecnologia que usa WallE es la de un framework llamado Blazor Server que
+                le permite relacionar todas esas partes. El uso de las funciones asíncronas del C# también forma parte
+                de las claves para realizar las funciones de dibujo a medida que se ejecuta los procesos lógicos del
+                lenguaje,
+                todo eso en tiempo de ejecución y sin bloquear el hilo de ejecución, osea hay constantes movimientos
+                entre los lenguajes C# y JavaScript que sin el uso de esta funcionabilidad sería casi imposible unificar
+                estos lenguajes.
+
+            <p> Ante la duda generada el uso de JavaScript es para hacer uso de las funciones intrínsecas del lenguaje
+                para interactuar con facilidad con los lenguajes HTML y CSS .
+                Hacemos uso de una de las librerías con las que cuenta <a href="https://p5js.org" alt="">P5</a> , que
+                permite dibujar un lienzo, dibujar cada una de las posibles figuras que WallE hace y participar en
+                eventos propios de la página.
+
+
+            </p>
+
+            </p>
+            <h1 id="section4">Design</h1>
+            <p>
+                WallE acaba de enterarse que no estaba solo en la Tierra, los humanos que ya no habitan ahí , han estado
+                observando sus movimientos
+                y han querido representar ese diseño para enseñarlo a sus nuevos robot Ëva y el escuadrón de modernas
+                máquinas que le acompañan.
+                El diseño es representativo de ese estudio y ayuda a la experiencia del usuario, principalmente porque
+                hablamos de tecnologia web que no necesita de
+                ningún compilador externo a los que tiene un usario regular en su ordenador. Sí, tu navegador es capaz
+                de mostrarte los elementos de la página.
+            </p>
+
+            <p>
+                Aunque el navegador que usaron los programadores fue el <i class="fab fa-chrome"></i>GoogleChrome de
+                Windows 10, no hicieron un exhaustivo estudio en el campo de
+                revisar si todos los componentes servían dentro de cualquier navegador, tales como <i
+                    class="fab fa-firefox"></i>Firefox,<i class="fab fa-safari"></i>Safari o <i
+                    class="fab fa-edge"></i>el Microsoft Edges, solo sería adaptarlo a cada uno.
+                A lo mejor con más tiempo el equipo de diseñadores pueda resolver ese detalle. De momento esperemos que
+                no le sea mucha molestia levantar la página en GoogleChrome.
+            </p>
 
 
 
@@ -234,12 +345,17 @@
 
     </div>
 
+
+
+
+
     <div class="container-footer">
 
         <footer>
 
             <div class="redes-footer">
-                <a href="https://github.com/JabelResendiz/WALL-E" class="github"><i class="ri-github-fill">Repositorio</i></a>
+                <a href="https://github.com/JabelResendiz/WALL-E" class="github"><i
+                        class="ri-github-fill">Repositorio</i></a>
             </div>
             <hr>
             <h4>Tercer Proyecto de Programación</h4>
@@ -259,21 +375,24 @@
 
 @inject IJSRuntime JS
 @code {
-    private bool isHome=false;
-    protected override void OnInitialized(){
-        isHome=true;
+    private bool isHome = false;
+    protected override void OnInitialized()
+    {
+        isHome = true;
 
         explote();
     }
-    public async void explote(){
-        await JS.InvokeAsync<string>("destroyCanvas","text");
+    public async void explote()
+    {
+        await JS.InvokeAsync<string>("destroyCanvas", "text");
     }
 
 
 
 
-    public async void appendText(){
-        
-        await JS.InvokeAsync<string>("showAlert","Text will append when you close this alert");
+    public async void appendText()
+    {
+
+        await JS.InvokeAsync<string>("showAlert", "Text will append when you close this alert");
     }
 }

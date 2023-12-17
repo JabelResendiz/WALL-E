@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "57H4aqOzQHtOp+LX3cptejlGuApamdpCKR7d5jjUr8M=",
+  "Hash": "ZtR2w2fJvvgV36P+kAmRhAMwUf6REQs+NLIly1Pcfmc=",
   "Source": "BlazorServer",
   "BasePath": "_content/BlazorServer",
   "Mode": "Default",
@@ -83,6 +83,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\css\\bootstrap\\bootstrap.min.css.map"
+    },
+    {
+      "Identity": "C:\\Users\\HP\\Documents\\GEO WALL_E\\WALL-E\\BlazorServerApp\\BlazorServer\\wwwroot\\css\\fondo claro.jpg",
+      "SourceId": "BlazorServer",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\HP\\Documents\\GEO WALL_E\\WALL-E\\BlazorServerApp\\BlazorServer\\wwwroot\\",
+      "BasePath": "_content/BlazorServer",
+      "RelativePath": "css/fondo claro.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\fondo claro.jpg"
     },
     {
       "Identity": "C:\\Users\\HP\\Documents\\GEO WALL_E\\WALL-E\\BlazorServerApp\\BlazorServer\\wwwroot\\css\\open-iconic\\FONT-LICENSE",
@@ -253,6 +270,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\css\\otra.jpg"
+    },
+    {
+      "Identity": "C:\\Users\\HP\\Documents\\GEO WALL_E\\WALL-E\\BlazorServerApp\\BlazorServer\\wwwroot\\css\\robots.jpg",
+      "SourceId": "BlazorServer",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\HP\\Documents\\GEO WALL_E\\WALL-E\\BlazorServerApp\\BlazorServer\\wwwroot\\",
+      "BasePath": "_content/BlazorServer",
+      "RelativePath": "css/robots.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\robots.jpg"
     },
     {
       "Identity": "C:\\Users\\HP\\Documents\\GEO WALL_E\\WALL-E\\BlazorServerApp\\BlazorServer\\wwwroot\\css\\site.css",

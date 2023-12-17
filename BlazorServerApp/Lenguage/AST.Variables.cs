@@ -6,12 +6,13 @@ using Microsoft.JSInterop;
 
 #region SuperClass Variables
 
-public class Variables:AST{
+public class Variables : AST
+{
 
     public Token Token;
     public object Value;
 
-    
+
 }
 public class Num : Variables
 {
@@ -46,7 +47,7 @@ public class Cadene : Variables
 
 public class Empty : Variables
 {
-    
+
 }
 
 
@@ -56,9 +57,10 @@ public class Empty : Variables
 #region Figure
 
 
-public interface IDraw{
-    
-    
+public interface IDraw
+{
+
+
     void Draw(string tag);
     //object Function();
 
@@ -66,121 +68,148 @@ public interface IDraw{
 
 
 
-public class FIGURE:AST{
+public class FIGURE : AST
+{
 
     public Token Token;
     public AST firstParam;
     public AST secondParam;
-
+    public AST thirdParam;
+    public AST measure;
     public double param1;
     public double param2;
     public double param3;
     public double param4;
-    public FIGURE(Token name=null,AST firstParam =null,AST secondParam =null){
+    public double param5;
+    public double param6;
+    public double param7;
 
-        Token=name;
-        this.firstParam=firstParam;
-        this.secondParam=secondParam;
+    public FIGURE(Token name = null, AST firstParam = null, AST secondParam = null)
+    {
 
-        if(!(name is null)){
-        // (ejemplos )point c3; circle c2; line s; segment y
-        Random rnd = new Random();
-        param1= rnd.Next(0,400);
-        param2= rnd.Next(0,400);
-        param3= rnd.Next(0,400);
-        param4= rnd.Next(0,400);
-  
+        Token = name;
+        this.firstParam = firstParam;
+        this.secondParam = secondParam;
+
+        if (!(name is null))
+        {
+            // (ejemplos )point c3; circle c2; line s; segment y
+            Random rnd = new Random();
+            param1 = rnd.Next(0, 400);
+            param2 = rnd.Next(0, 400);
+            param3 = rnd.Next(0, 400);
+            param4 = rnd.Next(0, 400);
+            param5 = rnd.Next(0, 400);
+            param6 = rnd.Next(0, 400);
+            param7 = rnd.Next(0, 400);
         }
 
         //Value=Clone();
-    
-       
+
+
     }
 
-    public FIGURE Clone(){
+    public FIGURE Clone()
+    {
         return (FIGURE)MemberwiseClone();
     }
 
-    public void Check(object first,object second){
+    public void Check(object first, object second, object third, object measure)
+    {
 
-        if(this is POINT){
 
-            param1=Convert.ToDouble(first);
-            
-            
+        if (this is POINT)
+        {
+
+            param1 = Convert.ToDouble(first);
+
+
         }
-        else{
-            param1= ((POINT)first).param1;
-            param2=((POINT)first).param3;
-            
+        else
+        {
+            param1 = ((POINT)first).param1;
+            param2 = ((POINT)first).param3;
+            param5 = (third is null) ? 0 : ((POINT)third).param1;
         }
 
-        if(this is POINT || this is CIRCLE){
+        if (this is POINT || this is CIRCLE)
+        {
 
-            param3=Convert.ToDouble(second);
-            
+            param3 = Convert.ToDouble(second);
+
         }
-        else{
+        else
+        {
 
-            param3= ((POINT)second).param1;
-            param4=((POINT)second).param3;
-            
+            param3 = ((POINT)second).param1;
+            param4 = ((POINT)second).param3;
+            param6 = (third is null) ? 0 : ((POINT)third).param3;
+            param7 = (third is null) ? 0 : Convert.ToDouble(measure);
         }
 
     }
-   
-    
+
+
 }
 
-public class POINT : FIGURE,IDraw{
-    
-    public POINT(Token name,AST firstParam,AST secondParam) :base(name,firstParam,secondParam){}
+public class POINT : FIGURE, IDraw
+{
 
-    public async void Draw(string tag){
-        
+    public POINT(Token name, AST firstParam, AST secondParam) : base(name, firstParam, secondParam) { }
+
+    public async void Draw(string tag)
+    {
+
         Console.WriteLine($"Drawing a point ... ");
         Console.WriteLine($"{param1};{param3}");
-        var parameters = new{
+        var parameters = new
+        {
             param1,
             param3,
             tag,
         };
-        await Principal._jsRuntime.InvokeAsync<object>("DibujarePoint",parameters);
+        await Principal._jsRuntime.InvokeAsync<object>("DibujarePoint", parameters);
     }
-    
+
 }
 
-public class CIRCLE : FIGURE,IDraw{
-    
-    public CIRCLE(Token name,AST firstParam,AST secondParam) :base(name,firstParam,secondParam){}
-    public async void Draw(string tag){
-        
+public class CIRCLE : FIGURE, IDraw
+{
+
+    public CIRCLE(Token name, AST firstParam, AST secondParam) : base(name, firstParam, secondParam) { }
+    public async void Draw(string tag)
+    {
+
 
         Console.WriteLine($"Drawing a circle ... ");
         Console.WriteLine($"{param1};{param2};{param3}");
-        var parameters = new{
+        var parameters = new
+        {
             param1,
             param2,
             param3,
             tag
         };
-        await Principal._jsRuntime.InvokeAsync<object>("DibujareEllipse",parameters);
+        await Principal._jsRuntime.InvokeAsync<object>("DibujareEllipse", parameters);
     }
-    
+
 }
 
-public class LINE : FIGURE,IDraw{
-    
-    public LINE(Token name,AST firstParam,AST secondParam) :base(name,firstParam,secondParam){}
-    
+public class LINE : FIGURE, IDraw
+{
+
+    public LINE(Token name, AST firstParam, AST secondParam) : base(name, firstParam, secondParam) { }
+
     // expresion que constituye una nueva lista de instrucciones
-    
-    public async void Draw(string tag){
-        
+
+    public async void Draw(string tag)
+    {
+
 
         Console.WriteLine($"Drawing a line ... ");
-        
-        var parameters = new{
+
+        var parameters = new
+        {
             param1,
             param2,
             param3,
@@ -189,22 +218,25 @@ public class LINE : FIGURE,IDraw{
         };
 
         Console.WriteLine($"{param1};{param2};{param3};{param4}");
-        await Principal._jsRuntime.InvokeAsync<object>("DibujarLine",parameters);
+        await Principal._jsRuntime.InvokeAsync<object>("DibujarLine", parameters);
     }
 
-    
+
 }
-public class SEGMENT : FIGURE,IDraw{
-   
-    
-    public SEGMENT(Token name,AST firstParam,AST secondParam) :base(name,firstParam,secondParam){}
-        
-    public async void Draw(string tag){
-        
+public class SEGMENT : FIGURE, IDraw
+{
+
+
+    public SEGMENT(Token name, AST firstParam, AST secondParam) : base(name, firstParam, secondParam) { }
+
+    public async void Draw(string tag)
+    {
+
 
         Console.WriteLine($"Drawing a segment ... ");
-        
-        var parameters = new{
+
+        var parameters = new
+        {
             param1,
             param2,
             param3,
@@ -213,23 +245,26 @@ public class SEGMENT : FIGURE,IDraw{
         };
 
         Console.WriteLine($"{param1};{param2};{param3};{param4}");
-        await Principal._jsRuntime.InvokeAsync<object>("DibujarSegment",parameters);
+        await Principal._jsRuntime.InvokeAsync<object>("DibujarSegment", parameters);
     }
 
-    
+
 }
 
-public class RAY : FIGURE,IDraw{
-   
-    
-    public RAY(Token name,AST firstParam,AST secondParam) :base(name,firstParam,secondParam){}
-        
-    public async void Draw(string tag){
-        
+public class RAY : FIGURE, IDraw
+{
+
+
+    public RAY(Token name, AST firstParam, AST secondParam) : base(name, firstParam, secondParam) { }
+
+    public async void Draw(string tag)
+    {
+
 
         Console.WriteLine($"Drawing a ray ... ");
-        
-        var parameters = new{
+
+        var parameters = new
+        {
             param1,
             param2,
             param3,
@@ -238,39 +273,41 @@ public class RAY : FIGURE,IDraw{
         };
 
         Console.WriteLine($"{param1};{param2};{param3};{param4}");
-        await Principal._jsRuntime.InvokeAsync<object>("DibujarRay",parameters);
+        await Principal._jsRuntime.InvokeAsync<object>("DibujarRay", parameters);
     }
 
-    
+
 }
 
-public class ARC:FIGURE,IDraw{
+public class ARC : FIGURE, IDraw
+{
 
-    public double param5;
-    public double param6;
-    public double param7;
-    public AST thirdParam;
-    public AST measure;
+    public ARC(Token name, AST firstParam, AST secondParam, AST thirdParam, AST measure) : base(name, firstParam, secondParam)
+    {
+        this.thirdParam = thirdParam;
+        this.measure = measure;
 
-    public ARC(Token name,AST firstParam,AST secondParam,AST thirdParam,AST measure) :base(name,firstParam,secondParam){
-        this.thirdParam=thirdParam;
-        this.measure=measure;
     }
-    public async void Draw(string tag){
-        
+    public async void Draw(string tag)
+    {
+
 
         Console.WriteLine($"Drawing an arc ... ");
-        
-        var parameters = new{
+        Console.WriteLine(param6);
+        var parameters = new
+        {
             param1,
             param2,
             param3,
             param4,
+            param5,
+            param6,
+            param7,
             tag
         };
 
-        Console.WriteLine($"{param1};{param2};{param3};{param4}");
-        await Principal._jsRuntime.InvokeAsync<object>("DibujarRay",parameters);
+        Console.WriteLine($"{param1};{param2};{param3};{param4};{param5};{param6};{param7}");
+        await Principal._jsRuntime.InvokeAsync<object>("DibujarArc", parameters);
     }
 }
 #endregion
@@ -278,44 +315,50 @@ public class ARC:FIGURE,IDraw{
 
 #region Color
 
-public class COLOR:AST{
+public class COLOR : AST
+{
 
-    public ColorType color{get;}
-    public TokenTypes token {get;}
-    public static Stack<ColorType> stackColor= new Stack<ColorType>();
-    public COLOR(TokenTypes token,ColorType color=ColorType.black)
-    
-    {     
-        this.token=token;
-        this.color=color;
+    public ColorType color { get; }
+    public TokenTypes token { get; }
+    public static Stack<ColorType> stackColor = new Stack<ColorType>();
+    public COLOR(TokenTypes token, ColorType color = ColorType.black)
+
+    {
+        this.token = token;
+        this.color = color;
     }
 
 
-    public async void  Push(){
+    public async void Push()
+    {
 
         stackColor.Push(color);
         Console.WriteLine($"Changed color to {color} ... ");
-        
-        await Principal._jsRuntime.InvokeAsync<object>("Color",color.ToString());
+
+        await Principal._jsRuntime.InvokeAsync<object>("Color", color.ToString());
     }
 
-    public async void Restore(){
-        
+    public async void Restore()
+    {
 
-        if(stackColor.Count>0){
+
+        if (stackColor.Count > 0)
+        {
 
             Console.WriteLine($"{stackColor.Peek().ToString()} color has been drawn from the stack");
             stackColor.Pop();
-  
-        if(stackColor.Count==0){
-            await Principal._jsRuntime.InvokeAsync<object>("Color","black");
-        }
 
-        else{
-            
-        
-        await Principal._jsRuntime.InvokeAsync<object>("Color",stackColor.Peek().ToString());
-        }
+            if (stackColor.Count == 0)
+            {
+                await Principal._jsRuntime.InvokeAsync<object>("Color", "black");
+            }
+
+            else
+            {
+
+
+                await Principal._jsRuntime.InvokeAsync<object>("Color", stackColor.Peek().ToString());
+            }
 
         }
     }

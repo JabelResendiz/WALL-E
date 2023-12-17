@@ -9,9 +9,8 @@
     body{
         display:flex;
         justify-content: center;
-
         min-height: 100vh;
-        background: url('../css/otra.jpg') no-repeat;
+        background: url('../css/robots.jpg') no-repeat;
         background-size: cover;
         background-position: center;
 
@@ -33,16 +32,18 @@
 
         font-size:20px;
         font-family: Georgia, 'Times New Roman', Times, serif;
-        color: white;
+        color: black;
         margin:10px;
     }
-    .answer{
+    .console{
 
         position: absolute;
         top:650px;
         width: 500px;
         max-height: 300px;
         height: 270px;
+        overflow: auto;
+        cursor:pointer;
 
         background: rgba(255,255,255,.1);
         box-shadow: 0 25px 45px rgba(0,0,0,.2);
@@ -52,11 +53,8 @@
         border-bottom: 2px solid rgba(255,255,255,.2);
         backdrop-filter: blur(10px);
 
-        font-size:20px;
-        font-family: Georgia, 'Times New Roman', Times, serif;
-        color: white;
-        margin:10px;
-    
+        
+        
     }
 
 
@@ -107,21 +105,38 @@
 
 <button type="default" class="graph" @onclick="Resultado">Graph</button>
 <button type="default" class="remove" @onclick="Remove">Remove</button>
+ 
 
 
+@if (!string.IsNullOrEmpty(Principal.console)){
 
-<textarea class="answer" @bind="Text" rows="10" cols="50" >Answer!
+    <div class="console">
+
+        @foreach(string linea in @Principal.console.Split('\n')){
+            <p style="font-size:20px;
+                font-family: Georgia, 'Times New Roman', Times, serif;
+                color: black;
+                margin:30px;
+    ">@linea</p><br>
+            Console.WriteLine(linea);
+        }
+        
+    </div>
+        
+    
+    
+}
 
 
-</textarea>
 
 @code {
+
 
     string Text="";
     int currentCount=0;
     public void Resultado(){
         Principal.Text=Text;
-
+        Principal.console="";
         Console.WriteLine("Start !");
         try{
             Principal.Principal2(JS);

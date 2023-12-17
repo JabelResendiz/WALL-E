@@ -1,0 +1,8 @@
+
+
+a={};
+
+b,c,_=a;
+
+print b;
+if a then1 else 2;

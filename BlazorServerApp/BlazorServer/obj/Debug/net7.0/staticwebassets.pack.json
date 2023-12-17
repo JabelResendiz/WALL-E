@@ -33,6 +33,10 @@
       "PackagePath": "staticwebassets\\css\\bootstrap\\bootstrap.min.css.map"
     },
     {
+      "Id": "C:\\Users\\HP\\Documents\\GEO WALL_E\\WALL-E\\BlazorServerApp\\BlazorServer\\wwwroot\\css\\fondo claro.jpg",
+      "PackagePath": "staticwebassets\\css\\fondo claro.jpg"
+    },
+    {
       "Id": "C:\\Users\\HP\\Documents\\GEO WALL_E\\WALL-E\\BlazorServerApp\\BlazorServer\\wwwroot\\css\\open-iconic\\FONT-LICENSE",
       "PackagePath": "staticwebassets\\css\\open-iconic"
     },
@@ -71,6 +75,10 @@
     {
       "Id": "C:\\Users\\HP\\Documents\\GEO WALL_E\\WALL-E\\BlazorServerApp\\BlazorServer\\wwwroot\\css\\otra.jpg",
       "PackagePath": "staticwebassets\\css\\otra.jpg"
+    },
+    {
+      "Id": "C:\\Users\\HP\\Documents\\GEO WALL_E\\WALL-E\\BlazorServerApp\\BlazorServer\\wwwroot\\css\\robots.jpg",
+      "PackagePath": "staticwebassets\\css\\robots.jpg"
     },
     {
       "Id": "C:\\Users\\HP\\Documents\\GEO WALL_E\\WALL-E\\BlazorServerApp\\BlazorServer\\wwwroot\\css\\site.css",

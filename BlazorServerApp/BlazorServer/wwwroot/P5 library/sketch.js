@@ -175,8 +175,44 @@ function DibujarePoint(parameters){
   
   noFill();
 }
+function DibujarArc(parameters){
+  console.log(parameters.param2);
+  console.log(parameters.param6);
+  console.log(parameters.param2-parameters.param6);
+  console.log(parameters.param1-parameters.param5);
+  angleFirstRay= Math.atan( (parameters.param2-parameters.param4)/(parameters.param1-parameters.param3));
+  angleSecondRay= Math.atan( (parameters.param2-parameters.param6)/(parameters.param1-parameters.param5));
 
-
+  console.log(angleSecondRay);
+  if(angleFirstRay==0 ){
+    angleFirstRay= (parameters.param1>parameters.param3)?PI:angleFirstRay;
+  }
+  else{
+    angleFirstRay=AngleWork(angleFirstRay,parameters.param2,parameters.param4);
+  }
+  if(angleSecondRay==0){
+    angleSecondRay= (parameters.param1>parameters.param5)?PI:angleFirstRay;
+  }
+  else{
+    angleSecondRay=AngleWork(angleSecondRay,parameters.param2,parameters.param6);
+  }
+  
+  console.log(angleFirstRay);
+  console.log(angleSecondRay);
+  
+  arc(parameters.param1,parameters.param2,parameters.param7,parameters.param7,angleFirstRay,angleSecondRay);
+}
+function AngleWork(angle,paramY1,paramY2){
+  
+  if(paramY2>=paramY1 && angle<0){
+    angle= angle+PI;
+  }
+  
+  else if(paramY2<paramY1 ){
+    angle= (angle<0)?angle+2*PI: PI+angle;
+  }
+  return angle;
+}
 
 function Color(color){
 
