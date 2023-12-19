@@ -34,7 +34,7 @@ Start the server in Windows
 
 ## G# Lenguage 👨‍💻
 
-G# es un lenguaje de programación sobre el que se fundamenta gran parte de la logica del proyecto. Un programa en G# es un conjunto de instrucciones. Las instrucciones permiten recibir argumentos de
+G# es un lenguaje de programación sobre el que se fundamenta gran parte de la lógica del proyecto. Un programa en G# es un conjunto de instrucciones. Las instrucciones permiten recibir argumentos de
 entrada, importar otros códigos, definir funciones o constantes, configurar características del visor y dibujar objetos
 geométricos. En la carpeta Lenguage aparece implementada la lógica del lenguaje.
 
@@ -48,11 +48,11 @@ geométricos. En la carpeta Lenguage aparece implementada la lógica del lenguaj
 
 ## Running Tests
 
-El proyecto es capaz de reconocer librerias importadas que el usuario debera ubicar en la direccion :
+El proyecto es capaz de reconocer librerias importadas que el usuario deberá ubicar en la dirección :
 ```bash
    ~/BlazorServerApp/Tests
 ```
-Ahi vera que hay cargada otros archivos que estaran a su disposicion y los cuales sera libre de modificar. 
+Ahi vera que hay cargada otros archivos que estaran a su disposición y los cuales sera libre de modificar. 
 
 ## Screenshots 📸
 

@@ -15,13 +15,17 @@ public class Interpreter : NodeVisitor
 
     private double recursiveCount;
     private Parser? Parser;
-    public static Dictionary<string, object> Scope;
+    public static Dictionary<string, object> Scope;// variables declaradas con let (no puede ser global en todo el programa)
+                                                   //public Dictionary<string,AST>Function= new Dictionary<string, AST>();
+    
 
+    //public ReservateKeywords reserved= new ReservateKeywords();
+    //public Principal principal= new Principal();
     public Interpreter(Parser parser)
     {
 
         Parser = parser;
-        Scope = new Dictionary<string, object>();
+        Scope = new Dictionary<string, object>();// esto es una variable local
 
         appendText();// inicializando el lienzo una sola vez
     }
@@ -40,6 +44,8 @@ public class Interpreter : NodeVisitor
 
 
     // metodo llamado para inicalizar el lienzo de la function setup de la liberia P5.JS
+
+
     public async void appendText()
     {
 
@@ -50,12 +56,14 @@ public class Interpreter : NodeVisitor
 
         catch (TaskCanceledException)
         {
-            Console.WriteLine("ERROR BlazorServer : Instruccions in connection with JSInterop are falling");
+            Console.WriteLine("wtf men 123445567890-48958309485093840958");
         }
     }
 
     public override object VisitColor(COLOR node, Dictionary<string, object> Scope)
     {
+
+
 
         if (node.token is TokenTypes.COLOR)
         {
@@ -95,108 +103,112 @@ public class Interpreter : NodeVisitor
 
                 // IEnumerable<Variables> intersect= node.Intersect((FIGURE) first,(FIGURE) second);
                 //new FiniteSequence<Variables>(intersect)
-                return node.Intersect((FIGURE)first, (FIGURE)second).Select(x => Visit((AST)x, Scope)).ToList();
+                var intersect = new FiniteSequence2<FIGURE>(node.Intersect((FIGURE)first, (FIGURE)second).Select(x => (FIGURE)x).ToList());
+                return intersect;
             }
             SemanticError($"{((first is FIGURE) ? second : first)} is not a figure");
 
         }
-        else if (node.token.Type == TokenTypes.COUNT)
-        {
 
-            if (first is List<object> || first is Sequence)
-                return (first is List<object>) ? ((List<object>)first).Count() : ((Sequence)first).count2;
+        else if(node.token.Type == TokenTypes.RANDOMS){
+            Console.WriteLine(first);
+            return node.Random();
+            //else SemanticError($"{node.first} is not a sequence and not has defined a method \" randoms()\" ");
+            
+        }
+
+        else if(node.token.Type ==TokenTypes.COUNT){
+            if(first is SEQUENCE2)return node.Count((SEQUENCE2)first);
+            else SemanticError($"{node.first} is not a sequence and not has defined a method \" count()\"");
         }
         return 0;
     }
-    public override object VisitSequenceFinite(SEQUENCE node, Dictionary<string, object> Scope)
-    {
-        List<object> list = new List<object>();
 
-        foreach (AST i in node.sequence)
-        {
-            list.Add(Visit(i, Scope));
-        }
-        return list;
-    }
-    public override IEnumerable<object> VisitSequence(IEnumerable<object> node, Dictionary<string, object> Scope)
+    public override SEQUENCE2 VisitSequence(SEQUENCE2 node, Dictionary<string, object> Scope)
     {
 
 
-        if (node is RangoSequence)
+        if (node is RangoSequence2 || node is InfiniteSequence2)
         {
             return node;
         }
-        // las secuencias infinitas estan implementadas para almacenar valores de tipos enteros y puntos
-        if (node is InfiniteSequence<Num>)
-        {//se podria implementar una clase no generica para solucionar usar object
-            return node;
+        SEQUENCE2 secuenciaValores = new SEQUENCE2();
+
+
+        if (node.creativo.Count() == 0)
+        {
+
+            secuenciaValores = new FiniteSequence2<Empty>(new List<Empty>());
+
+            return secuenciaValores;
         }
-        return new List<object>();
-        //node es un arbol de AST que es FiniteSequence
-        /* 
-         object _firstType= Visit(((FiniteSequence<AST>)node).k.FirstOrDefault(),Scope);
 
-         if (((FiniteSequence<AST>)node).k.FirstOrDefault() is Empty){
-
-             _firstType= new Empty();
-         }
+        object _firstType = Visit(node.creativo.First(), Scope);
 
 
-         IEnumerable<object> enumerable(){
-             foreach(AST i in ((FiniteSequence<AST>)node).k){
+        List<object> enumerable()
+        {
+            List<object> s = new List<object>();
+            foreach (AST i in node.creativo)
+            {
 
-                 if(i==((FiniteSequence<AST>)node).k.FirstOrDefault()){
-                     yield return _firstType;
-                     continue;
-                 }
+                if (i == node.creativo.First())
+                {
 
-                 object f=Visit(i,Scope);
+                    s.Add(_firstType);
+                    continue;
+                }
 
-
-                 if(_firstType is FIGURE && f is FIGURE){
-
-                     yield return f;
-                     continue;
-                 }
-                 if(f.GetType() != _firstType.GetType()){
-                     SemanticError("la secuencia no es del mismo tipo");
-                 }
-                 if(f is Empty){
-                     SemanticError("falta un valor de la secuencia");
-                 }
-                 yield return f;
-
-             }
-         }
+                object f = Visit(i, Scope);
 
 
-         if(_firstType is Empty){
-             enumerable();
-             FiniteSequence<Variables> secuenciaValores= new FiniteSequence<Variables>(enumerable().Select(x=>(Empty)x));
+                if (_firstType is FIGURE && f is FIGURE)
+                {
 
-             return secuenciaValores;
-         }
-         if(_firstType is FIGURE){
+                    s.Add(f);
+                    continue;
+                }
+                if (f.GetType() != _firstType.GetType())
+                {
+                    SemanticError("la secuencia no es del mismo tipo");
+                }
+                s.Add(f);
 
-             FiniteSequence<Variables> secuenciaValores= new FiniteSequence<Variables>(enumerable().Select(x=>(FIGURE)x));
-
-             return secuenciaValores;
-         }
-         if(_firstType is double){
-             FiniteSequence<Variables> secuenciaValores= new FiniteSequence<Variables>(enumerable().Select(x=>new Num(new Token(TokenTypes.NUMBER,x))));
-
-             return secuenciaValores;
-         }
-         if(_firstType is string){
-             FiniteSequence<Variables> secuenciaValores= new FiniteSequence<Variables>(enumerable().Select(x=>new Cadene(new Token(TokenTypes.STRING,x))));
-
-             return secuenciaValores;
-         }
+            }
+            return s;
+        }
 
 
-         SemanticError("no se puede tener una secuencia de esos valores");
-         return new List<object>();
-         */
+
+        List<object> list = enumerable();
+        if (_firstType is FIGURE)
+        {
+
+            secuenciaValores = new FiniteSequence2<FIGURE>(list.Select(x => (FIGURE)x));
+
+
+        }
+        else if (_firstType is double)
+        {
+            secuenciaValores = new FiniteSequence2<Num>(list.Select(x => new Num(new Token(TokenTypes.NUMBER, x))));
+
+        }
+        else if (_firstType is string)
+        {
+            secuenciaValores = new FiniteSequence2<Cadene>(list.Select(x => new Cadene(new Token(TokenTypes.STRING, x))));
+
+
+        }
+        else { Console.WriteLine(_firstType); SemanticError("no se puede tener una secuencia de esos valores"); }
+
+
+
+
+
+
+
+        return secuenciaValores;
+
     }
 
     public override object VisitDraw(Draw node, Dictionary<string, object> Scope)
@@ -235,6 +247,7 @@ public class Interpreter : NodeVisitor
 
         return 0;
     }
+
 
     public override FIGURE VisitFigure(FIGURE node, Dictionary<string, object> Scope)
     {
@@ -283,7 +296,6 @@ public class Interpreter : NodeVisitor
         return l;
 
     }
-
     public override object VisitLOG(LOG node, Dictionary<string, object> Scope)
     {
         if (node.bases is null && node.Statement is null)
@@ -333,7 +345,7 @@ public class Interpreter : NodeVisitor
     {
 
         object tree = Visit(node.Compound, Scope);
-
+        
         return tree;
     }
 
@@ -428,41 +440,47 @@ public class Interpreter : NodeVisitor
                     result = (string)left + (string)right;
                 else if (left is bool || right is bool)
                     SemanticError($"Operator \" + \" cannot be used between a \"bool\" ");
-                else if (left is List<object> || right is List<object>)
+                else if (left is SEQUENCE2 && right is SEQUENCE2)
                 {
-                    Console.WriteLine("candela");
-                    Console.WriteLine(left);
-                    Console.WriteLine("candela");
-                    if (((List<object>)left).Count() == 0) result = (List<object>)right;
-                    else if (((List<object>)right).Count() == 0) result = (List<object>)left;
-                    else result = ((List<object>)left).Concat((List<object>)right).ToList();
-                    Console.WriteLine("candela");
+
+                    if (left is FiniteSequence2<FIGURE> && right is FiniteSequence2<FIGURE>)
+                        result = new FiniteSequence2<FIGURE>(((FiniteSequence2<FIGURE>)left).Concat((FiniteSequence2<FIGURE>)right).Select(p => (FIGURE)p));
+                    else if (left is FiniteSequence2<Num> && right is FiniteSequence2<Num>)
+                        result = new FiniteSequence2<Num>(((FiniteSequence2<Num>)left).Concat((FiniteSequence2<Num>)right).Select(p => (Num)p));
+                    else if (left is FiniteSequence2<Cadene> && right is FiniteSequence2<Cadene>)
+                        result = new FiniteSequence2<Cadene>(((FiniteSequence2<Cadene>)left).Concat((FiniteSequence2<Cadene>)right).Select(p => (Cadene)p));
+                    else if (left is FiniteSequence2<Empty> || right is FiniteSequence2<Empty>)
+                        result = (left is FiniteSequence2<Empty>) ? right : left;
+                    else if (left is FiniteSequence2<Num> && right is OpenIntervalo)
+                        result = new OpenIntervalo(((FiniteSequence2<Num>)left).Concat((OpenIntervalo)right).Select(p => (Num)p));
+                    else if (left is OpenIntervalo && (right is FiniteSequence2<Num> || right is RangoSequence2 || right is OpenIntervalo))
+                        result = left;
+                    else if (left is FiniteSequence2<Num> && right is RangoSequence2)
+                        result = new FiniteSequence2<Num>(((FiniteSequence2<Num>)left).Concat((RangoSequence2)right).Select(p => (Num)p));
+                    else if (left is RangoSequence2 && right is OpenIntervalo)
+                        result = new OpenIntervalo(((RangoSequence2)left).Concat((OpenIntervalo)right).Select(p => (Num)p));
+                    else if (left is RangoSequence2 && right is FiniteSequence2<Num>)
+                        result = new FiniteSequence2<Num>(((RangoSequence2)left).Concat((FiniteSequence2<Num>)right).Select(p => (Num)p));
+                    else if (left is RangoSequence2 && right is RangoSequence2)
+                        result = new FiniteSequence2<Num>(((RangoSequence2)left).Concat((RangoSequence2)right).Select(p => (Num)p));
+                    else
+                        SemanticError($"No se puede concatenar {left} y {right}");
+
                 }
-                else if (left is TokenTypes.UNDEFINED && (right is List<object> || right is Sequence))
+                else if (left is TokenTypes.UNDEFINED && (right is SEQUENCE2 || right is SEQUENCE2))
                     result = TokenTypes.UNDEFINED;
-                else if ((right is List<object> || right is Sequence) && right is TokenTypes.UNDEFINED)
+                else if ((right is SEQUENCE2 || right is SEQUENCE2) && right is TokenTypes.UNDEFINED)
                     result = right; // ver aqui xq lista mas undefined es agregar Undefined a la lista
                 else if (right is TokenTypes.UNDEFINED || left is TokenTypes.UNDEFINED)
                     SemanticError($"{((right is TokenTypes.UNDEFINED) ? "Right" : "Left")} node is \" UNDEFINED\" and can only be used in sequence scopes");
-                else if (left is Sequence && right is Sequence)
-                {
 
-
-                    if (left is List<object> && right is InfiniteSequence<Num>)
-                        result = new InfiniteSequence<Num>(((List<object>)left).Select(p => (Num)p).Concat((InfiniteSequence<Num>)right).Select(p => (Num)p));
-                    else if (left is InfiniteSequence<Num> && right is List<object>)
-                        result = left;
-
-                    else
-                        SemanticError($"No se puede concatenar {left} y {right}");
-                }
                 else
                 {
                     if (left is string || right is string)
                     {
                         SemanticError($"Operator \" + \" cannot be used between \"{left.GetType()}\" and \"{right.GetType()}\"");
                     }
-                    if (left is Sequence || right is Sequence)
+                    if (left is SEQUENCE2 || right is SEQUENCE2)
                     {
                         SemanticError($"Operator \" + \" cannot be used between \"{left.GetType()}\" and \"{right.GetType()}\"");
                     }
@@ -685,24 +703,18 @@ public class Interpreter : NodeVisitor
         {
             recursiveCount = 0;
             object output = Visit(item, Scope);
-            if (output is string || output is double)
-            {
-                Principal.console += output + "\n";
+            if(output is SEQUENCE2){
+                foreach(var f in (SEQUENCE2)output)Principal.console+=$"{f.Value}"+" ";
+                Principal.console+="\n";
             }
-            if (output is IEnumerable<object>)
-            {
-                foreach (var f in (IEnumerable<object>)output)
-                {
-                    Principal.console += ((f is AST) ? ((Num)f).Value : f.ToString()) + " ; ";
-                }
-                Principal.console += "\n";
-            }
-            //Console.WriteLine((output is string)?(string)output: (output is bool)? (bool)output : (output is double)?Convert.ToDouble(output):(output is TokenTypes.UNDEFINED)?"undefined":"debe ser una secuencia");
+            else Principal.console+=$"{output}"+"\n";
+            Console.WriteLine((output is string) ? (string)output : (output is bool) ? (bool)output : (output is double) ? Convert.ToDouble(output) : (output is TokenTypes.UNDEFINED) ? "undefined" : "debe ser una secuencia");
             //Scope.Clear();
 
         }
 
         Console.WriteLine(recursiveCount);
+
         Principal.Functiones.Clear();
         COLOR.stackColor.Clear();
         Scope.Clear();
@@ -728,74 +740,16 @@ public class Interpreter : NodeVisitor
     public override object VisitAssign(Assign node, Dictionary<string, object> Scope)
     {
         object v = Visit(node.Right, Scope);
-        Console.WriteLine("aloha");
-        if (v is List<object>)
+
+        if (v is SEQUENCE2)
         {
 
-
-
-            for (int i = 0; i < node.Left.Count; i++)
-            {
-
-                if (node.Left[i].Token.Type != TokenTypes.UNDERSCORE)
-                {
-
-                    if ((string)node.Left[i].Value == "rest")
-                    {
-                        if (i >= ((List<object>)v).Count)
-                        {
-                            Scope.Add("rest", new List<object>());
-                        }
-                        else
-                        {
-
-                            List<object> s = ((List<object>)v).Skip(i).ToList();
-                            Scope.Add("rest", s);
-                            ((List<object>)v).Clear();// se vacia la lista 
-                        }
-                    }
-
-                    else if (i < ((List<object>)v).Count)
-                    {
-                        if (i == node.Left.Count - 1)
-                        {
-                            List<object> s = ((List<object>)v).Skip(i).ToList();
-                            Scope.Add((string)node.Left[i].Value, s);
-                        }
-                        else
-                        {
-                            object value = ((List<object>)v)[i];
-                            Scope.Add((string)node.Left[i].Value, (value is null) ? TokenTypes.UNDEFINED : value);
-
-
-                        }
-                    }
-                    else
-                    {
-                        Scope.Add((string)node.Left[i].Value, TokenTypes.UNDEFINED);
-                    }
-                }
-            }
-        }
-
-        //ISequence<object>v2=(FiniteSequence<object>)v;
-        // si v es IEnumerble pues es xq node.Right es de tipo Secuence=> vtiene el mismo valor que node.Right.secuence
-        else if (v is IEnumerable<object>)
-        {// tratarlo como un IEnumerable<Num> o IEnumerable<POINT> 
-            Console.WriteLine("aloha");
-            // node.Left es IEnumerable es A
-            // v es IEnumerable es B pero quiero que pueda ser de string
             IEnumerable<string> s = node.Left.Select(x => (string)x.Value);
-            // una secuencia de figuras ?
-            // convertir V en una IEnumerbale de Num
-            //ISequence<Num>v4=(ISequence<Num>) ((IEnumerable<object>)v).Select(p=> (Num)p);
-            //ISequence <Variables>v3=(ISequence<Variables>)v4;
-            IEnumerable<object> v2 = (ISequence<Variables>)v;
 
-
-            if (v2.FirstOrDefault() is Empty)
+            if (((SEQUENCE2)v) is FiniteSequence2<Empty>)
             {
 
+                if (s.Count() == 1) { Scope.Add(s.First(), v); return 0; }
                 Scope = s.Where(v => v != "_").Aggregate(Scope, (acc, element) =>
 {
     acc[element] = "undefined";
@@ -806,17 +760,26 @@ public class Interpreter : NodeVisitor
                 foreach (var g in Scope) Console.WriteLine($"{g.Key}: {g.Value}");
                 return 0;
             }
+            bool isFIGURE = ((SEQUENCE2)v).OfType<FIGURE>().Any();
 
-            var pairs = s.Zip(v2, (a, b) => new { Key = a, Value = b }).Where(pair => pair.Key != "_");
-            pairs.ToList().ForEach(x => Scope.Add(x.Key, ((Variables)x.Value).Value));
+            var pairs = s.Zip((IEnumerable<object>)v, (a, b) => new { Key = a, Value = b }).Where(pair => pair.Key != "_");
+            if (isFIGURE)
+            {
+                pairs.ToList().ForEach(x => Scope.Add(x.Key, x.Value));
+            }
+            else
+            {
+                pairs.ToList().ForEach(x => Scope.Add(x.Key, ((Variables)x.Value).Value));
+
+            }
+
 
             // excepciones 
 
-            if (!(v is InfiniteSequence<Num>) && s.Count() > v2.Count())
+            if (!(v is InfiniteSequence2) && s.Count() > (int)((SEQUENCE2)v).counter)
             {
-                // el resto de elementos de A se guarda como "null";
-                //var f=A.Select((elemento,index)=> new {Elemento=elemento, Indice=indice+index});
-                var f = s.Skip(v2.Count()).Where(pair => pair != "_");
+                
+                var f = s.Skip((int)((SEQUENCE2)v).counter).Where(pair => pair != "_");
                 foreach (var i in f)
                 {
                     Scope.Add(i, "undefined");
@@ -825,7 +788,7 @@ public class Interpreter : NodeVisitor
             }
 
 
-            else if (s.Last() != "_" && (v is InfiniteSequence<Num> || s.Count() < v2.Count()))
+            else if (s.Last() != "_" && (v is InfiniteSequence2 || s.Count() <= (int)((SEQUENCE2)v).counter))
             {
 
 
@@ -840,60 +803,38 @@ public class Interpreter : NodeVisitor
                     Scope.Remove(h);
 
 
-                    if (v is InfiniteSequence<Num>)
+                    if (v is InfiniteSequence2)
                     {
-                        IEnumerable<Num> qwwq = ((InfiniteSequence<Num>)v).Skip(s.Count() - 1).Select(p => (Num)p);
+                        IEnumerable<Num> qwwq = ((IEnumerable<object>)v).Skip(s.Count() - 1).Select(p => (Num)p);
                         // qwwq quiero convertirlo en una secuecnia de Num
-                        InfiniteSequence<Num> enumerable = new InfiniteSequence<Num>(qwwq);
+                        OpenIntervalo enumerable = new OpenIntervalo(qwwq);
                         Scope.Add(h, enumerable);
 
                     }
                     else
                     {
                         Console.WriteLine(h);
-                        IEnumerable<object> x = v2.Skip(s.Count() - 1);
+                        IEnumerable<Variables> x = ((IEnumerable<Variables>)v).Skip(s.Count() - 1);
                         // is es Rango o si es Infinite
-                        if (v is RangoSequence)
-                        {
-                            x = x.Select(y => ((Num)y).Value).ToList();
-                        }
-                        else
-                        {// InfiniteSequence de Num falta de Point
-                            List<Num> y = new List<Num> { (Num)x.First() };
-                            x = new InfiniteSequence<Num>(y);
-                        }
+
+                        x = new FiniteSequence2<Variables>(x);
+                        Console.WriteLine(x.GetType());
+                        foreach (Variables i in x) Console.WriteLine(i.Value);
+
                         Scope.Add(h, x);
                     }
                 }
             }
 
-            /*
-            foreach(var item in Scope){
-
-                if(item.Value is IEnumerable<object>){
-                    Console.Write($"{item.Key}: ");
 
 
-
-                    foreach(var j in (IEnumerable<object>)item.Value)
-                        Console.Write(" {0}",j);
-
-
-                    Console.WriteLine();
-                }
-                else
-                    Console.WriteLine($"{item.Key}: {item.Value}");
-            }
-            */
         }
 
 
 
         else
         {
-            // a,b,c,_= 1;
-            //a=1 y el resto es undefined
-
+            
             foreach (Var g in node.Left)
             {
                 if (g == node.Left[0]) Scope.Add((string)g.Value, v);
@@ -908,18 +849,19 @@ public class Interpreter : NodeVisitor
     // metodo para evaluar expressiones condicionales
     public override object VisitCondition(Condition node, Dictionary<string, object> Scope)
     {
+
         object condition = Visit(node.Compound, Scope);
-        Console.WriteLine(condition);
+
 
         if (condition is double)
         {
             condition = Convert.ToBoolean((double)condition);
         }
-        else if (condition is List<object>)
+        else if (condition is SEQUENCE2)// si es de un tipo definido por nosotros Sequence
         {
-            Console.WriteLine(((List<object>)condition).Count());
-            condition = !(((List<object>)condition).Count() == 0);
-            Console.WriteLine(condition);
+
+            condition = !((int)((SEQUENCE2)condition).counter < 1);
+
         }
         else if (condition is TokenTypes.UNDEFINED) condition = false;
         else if (!(condition is bool)) condition = true;
@@ -930,6 +872,9 @@ public class Interpreter : NodeVisitor
 
         return Visit(node.StatementElse, Scope);
     }
+
+    // metodo para evaluar expression en ciclo(aunque no es expression para este interprete)
+
 
     // metodo que retorna el valor de una variable local
     public override object VisitVar(Var node, Dictionary<string, object> Scope)
@@ -991,7 +936,7 @@ public class Interpreter : NodeVisitor
 
     //public override object VisitType(Type node) { return 0; }
 
-    public override object VisitEmpty(Empty node) { return TokenTypes.UNDEFINED; }
+    public override object VisitEmpty(Empty node) { return 0; }
 
     // se va a crear el AST y se va a dar a llenar el diccionario Scope
     public object Interpret()

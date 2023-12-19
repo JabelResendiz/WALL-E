@@ -18,9 +18,7 @@ public static class Principal
     public static void Principal2(IJSRuntime jsRuntime)
     {
 
-
-
-        _jsRuntime = jsRuntime;
+ _jsRuntime = jsRuntime;
         try
         {
             Method();

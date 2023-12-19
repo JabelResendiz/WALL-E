@@ -1,8 +1,22 @@
 
 
+{1,2,3,5,6};
+{1,2,3 ...};
+{1,4,6,8,90 ... 12};
+
+
 a={};
-
 b,c,_=a;
-
 print b;
-if a then1 else 2;
+if a then 1 else 2;
+
+d,e,f={1,6,7,34};
+print d+e;
+g,h,_=f;
+print g+h;
+
+d,e,f={1,6,7,34 ... 90};
+p,l,_,io=f;
+
+
+

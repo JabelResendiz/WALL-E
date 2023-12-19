@@ -76,14 +76,15 @@ public enum TokenTypes
 
     #endregion
 
-    #region Funciones
+    #region Functions
 
     INTERSECT,
     COUNT,
     SAMPLES,
     RANDOMS,
     MEASURE,
-
+    POINTS,
+    
     #endregion
 
     #region Auxiliars Tokens

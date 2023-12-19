@@ -305,6 +305,9 @@ public class Parser
                 Process(TokenTypes.R_PARENT, $" in col {Lexer.Pos}.");
 
                 break;
+            default:
+                node=null;
+                break;
         }
 
         return node;
@@ -329,7 +332,8 @@ public class Parser
 
             node = CallFunction();
 
-        else if (CurrentToken.Type == TokenTypes.MEASURE || CurrentToken.Type == TokenTypes.INTERSECT || CurrentToken.Type == TokenTypes.COUNT)
+        else if (CurrentToken.Type == TokenTypes.MEASURE || CurrentToken.Type == TokenTypes.INTERSECT || CurrentToken.Type == TokenTypes.COUNT ||
+        CurrentToken.Type == TokenTypes.POINTS || CurrentToken.Type == TokenTypes.RANDOMS || CurrentToken.Type == TokenTypes.SAMPLES)
 
             node = WalleFunction();
 
@@ -668,55 +672,52 @@ public class Parser
     // Metodo para funcion logaritmo (puede tomar hasta dos argumentos y al menos uno)
     // Si toma dos , el primero es la base del logaritmo y el segundo es el argumento
     // Si toma solo uno, pues el argumento, entendiendo que la base es E 
-    private AST Sequence()
-    {
+     private AST Sequence(){
+        
+        Process(TokenTypes.L_KEY,"L_key");
 
-        Process(TokenTypes.L_KEY, "L_key");
-
-        List<AST> k = new List<AST>() { Compounds() };
-
-
-        while (CurrentToken.Type == TokenTypes.COMMA)
-        {
-            Process(TokenTypes.COMMA, "The elements of a sequence must be separated by commas");
-
+        List<AST> k= new List<AST>(){Compounds()};
+        
+        
+        while(CurrentToken.Type==TokenTypes.COMMA){
+            Process(TokenTypes.COMMA,"The elements of a sequence must be separated by commas");
+            
             k.Add(Compounds());
         }
-
+   
 
 
         AST node;
-        if (CurrentToken.Type == TokenTypes.THREEPOINT)
-        {
-            bool allAreDouble = k.All(x => x is Num);
-            if (!allAreDouble)
-            {
+        if(CurrentToken.Type==TokenTypes.THREEPOINT){
+            bool allAreDouble= k.All(x=> x is Num);
+            if(!allAreDouble){
                 SyntaxError("Las declaraciones de secuencias de tipo rango , ya sea intervalo como infinitas solo puede contener valores doubles");
             }
-            Process(TokenTypes.THREEPOINT, "...");
-            if (CurrentToken.Type != TokenTypes.R_KEY)
-            {
-
-
-                AST final = Compounds();
-                if (!(final is Num))
-                {
+            Process(TokenTypes.THREEPOINT,"...");
+            if(CurrentToken.Type!=TokenTypes.R_KEY){
+                
+                
+                AST final= Compounds();
+                if(!(final is Num)){
                     SyntaxError("Las declaraciones de secuencias de tipo rango , ya sea cerrado como abierto solo puede contener valores doubles");
                 }
-                node = new RangoSequence(k.Select(x => (Num)x), (Num)final);
+                node=new RangoSequence2(k.Select(x=>(Num)x),(Num)final);
             }
 
-            else
-            {
-                node = new InfiniteSequence<Num>(k.Select(x => (Num)x));
+            else{
+                node=new OpenIntervalo(k.Select(x=>(Num)x));
             }
 
         }
-        else
-        {
-            node = new SEQUENCE(k);
+        else{
+            node=new SEQUENCE2();
+            if(k.First()is null && k.Count()>1) {
+                SyntaxError("candela no puedes tener eso ahi bro");
+            }
+            if(k.First()is null)k.RemoveAt(0);
+            ((SEQUENCE2)node).creativo=k;
         }
-        Process(TokenTypes.R_KEY, $"A closed key is missing from the declaration of a sequence");
+        Process(TokenTypes.R_KEY,$"A closed key is missing from the declaration of a sequence");
         return node;
     }
 
@@ -751,12 +752,14 @@ public class Parser
         Token token = CurrentToken;
         Process(CurrentToken.Type, "Invalid Token");
         Process(TokenTypes.L_PARENT, $"open parenthesis before \" {token.Value} \" function args ");
-
+        
         AST first = Compounds();
-        AST second = new AST();
+        AST second = new Empty();
 
-        if (token.Type != TokenTypes.COUNT)
+        if (token.Type != TokenTypes.COUNT && token.Type != TokenTypes.POINTS && token.Type != TokenTypes.RANDOMS &&
+        token.Type != TokenTypes.SAMPLES)
         {
+            Console.WriteLine(909);
             Process(TokenTypes.COMMA, "Function args must be separated by commas");
 
             second = Compounds();

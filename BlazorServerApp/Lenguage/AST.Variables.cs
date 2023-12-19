@@ -68,7 +68,7 @@ public interface IDraw
 
 
 
-public class FIGURE : AST
+public class FIGURE : Variables
 {
 
     public Token Token;
@@ -155,7 +155,15 @@ public class FIGURE : AST
 public class POINT : FIGURE, IDraw
 {
 
-    public POINT(Token name, AST firstParam, AST secondParam) : base(name, firstParam, secondParam) { }
+    public POINT(Token name, AST firstParam, AST secondParam) : base(name, firstParam, secondParam) { 
+
+        if(firstParam is Num){
+            param1=(double)((Num)firstParam).Value;
+        }
+        if(secondParam is Num){
+            param3=(double)((Num)secondParam).Value;
+        }
+    }
 
     public async void Draw(string tag)
     {

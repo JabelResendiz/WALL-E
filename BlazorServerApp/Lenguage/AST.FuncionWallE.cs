@@ -1,4 +1,6 @@
 
+using System.Runtime.CompilerServices;
+
 namespace GOLenguage;
 
 
@@ -19,16 +21,24 @@ public class FunctionWALLE : AST
         this.second = second;
     }
 
-    public object Count(SEQUENCE k)
-    {
-        return k.count;
-    }
+    
 
     public double Measure(POINT p1, POINT p2)
     {
 
         return Math.Sqrt(Math.Pow(p1.param1 - p2.param1, 2) + Math.Pow(p1.param3 - p2.param3, 2));
     }
+
+    public object Count(SEQUENCE2 seq)=>seq.counter;
+    public InfiniteSequence2 Random(){
+
+        if(!Interpreter.Scope.ContainsKey("randoms")){
+            Interpreter.Scope.Add("randoms",new RandomNumber());
+        }
+
+        return (RandomNumber)Interpreter.Scope["randoms"];
+    }
+    
 
     public List<object> /*IEnumerable<Variables>*/ Intersect(FIGURE f1, FIGURE f2)
     {

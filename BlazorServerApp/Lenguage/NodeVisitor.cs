@@ -9,12 +9,9 @@ public abstract class NodeVisitor
 
         if (node is COLOR)
             return VisitColor((COLOR)node, some);
-        else if (node is SEQUENCE)
-        {
-            return VisitSequenceFinite((SEQUENCE)node, some);
-        }
-        else if (node is IEnumerable<object>)
-            return VisitSequence((IEnumerable<object>)node, some);
+
+        else if(node is SEQUENCE2)
+            return VisitSequence((SEQUENCE2)node,some);
 
         else if (node is FunctionWALLE)
             return VisitFunWalle((FunctionWALLE)node, some);
@@ -117,8 +114,7 @@ public abstract class NodeVisitor
     public abstract object VisitLOG(LOG node, Dictionary<string, object> Scope);
     public abstract object VisitFigure(FIGURE node, Dictionary<string, object> Scope);
 
-    public abstract object VisitSequence(IEnumerable<object> node, Dictionary<string, object> Scope);
-    public abstract object VisitSequenceFinite(SEQUENCE node, Dictionary<string, object> Scope);
+    public abstract object VisitSequence(SEQUENCE2 node,Dictionary<string,object>Scope);
     public abstract object VisitFunWalle(FunctionWALLE node, Dictionary<string, object> Scope);
     public abstract object VisitColor(COLOR node, Dictionary<string, object> Scope);
     //public abstract object VisitCircle(Point node,Dictionary<string,object>Scope);
