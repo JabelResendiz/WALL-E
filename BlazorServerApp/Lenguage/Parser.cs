@@ -21,13 +21,14 @@ public class Parser
         //declarations = new Declarations(null);
     }
     #region SyntaxError
-    public static void SyntaxError(string error)
+    private async void SyntaxError(string error)
     {
         Console.WriteLine("! SYNATX ERROR: " + error);
+      
+        await Principal._jsRuntime.InvokeAsync<string>("alert", new object[] { "! SYNATX ERROR: " + error });
         throw new Exception();
         //Environment.Exit(1);
     }
-
     #endregion
 
     #region Parse

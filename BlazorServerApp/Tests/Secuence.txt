@@ -18,5 +18,8 @@ print g+h;
 d,e,f={1,6,7,34 ... 90};
 p,l,_,io=f;
 
-
+count(a);
+count(f);
+count({1,2,3 ... 45});
+count({1,2,3 ...});
 

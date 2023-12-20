@@ -24,10 +24,7 @@ function setup() {
     //ellipse(200,200,50,50);
     ///ellipse(random(width),random(height),50,50);
   }
-  function showAlert(msg){
 
-    alert(msg);
-  }
   function destroyCanvas(){
     
   

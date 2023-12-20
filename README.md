@@ -72,7 +72,7 @@ mediatrix(p1, p2) =
     in line(i1,i2);
 ```
 
-## Diseño Web 🚀
+## Web Design 🚀
 
 Usando la Tecnología de BlazorServer y aprovechando gran parte de sus implementaciones , el proyecto se visualiza en una página web. Blazor Server utiliza la arquitectura de servidor para renderizar las páginas web en el servidor y enviar actualizaciones al cliente a través de una conexión en tiempo real. Esto permite que las aplicaciones Blazor Server sean rápidas y responsivas, ya que solo se envían las actualizaciones necesarias al cliente en lugar de toda la página.
 
@@ -80,7 +80,7 @@ Ademas hacemos uso de las librerías P5 de JavaScript para la representacion del
 
 No pretendemos que el diseño super novedoso pero en realidad es un punto de inflexion en la vida del proyecto. El usuario (usted) se sentira mas comodo trabajando desde un sitio al cual puede acceder sin necesidad de un compilador específico, solo usando el navegador de su PC. 
 
-Aunque las pruebas no estan hechas en todos los navegadores del mercado, al menos en esta primera versión esta probado en el Chrome ,que sí, no es el navegador por default de Windows, Mac o de su distribucion de Linux pero agradeceríamos que fuese GoogleChrome su opción. Sin embargo el software es libre, esta en su derecho de modificar el diseño. 🚀
+Aunque las pruebas no estan hechas en todos los navegadores del mercado, al menos en esta primera versión esta probado en el Chrome ,que sí, no es el navegador por defecto de Windows, Mac o de su distribucion de Linux pero agradeceríamos que fuese GoogleChrome su opción. Sin embargo el software es libre, esta en su derecho de modificar el diseño. 🚀
 
 ## Documentation 🛰
 

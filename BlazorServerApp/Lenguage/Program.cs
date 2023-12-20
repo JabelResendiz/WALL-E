@@ -6,6 +6,6 @@ namespace GOLenguage;
             
 
 
-           // Principal.Principal2();
+            //Principal.Principal2();
         }
     }

@@ -17,7 +17,7 @@ public class Interpreter : NodeVisitor
     private Parser? Parser;
     public static Dictionary<string, object> Scope;// variables declaradas con let (no puede ser global en todo el programa)
                                                    //public Dictionary<string,AST>Function= new Dictionary<string, AST>();
-    
+
 
     //public ReservateKeywords reserved= new ReservateKeywords();
     //public Principal principal= new Principal();
@@ -31,9 +31,11 @@ public class Interpreter : NodeVisitor
     }
 
     # region 1 Semantic Error
-    private void SemanticError(string error)
+    private async void SemanticError(string error)
     {
         Console.WriteLine("!SEMANTIC ERROR: " + error);
+        await Principal._jsRuntime.InvokeAsync<string>("alert", "!SEMANTIC ERROR: " + error);
+
         throw new Exception();
     }
 
@@ -110,16 +112,31 @@ public class Interpreter : NodeVisitor
 
         }
 
-        else if(node.token.Type == TokenTypes.RANDOMS){
-            Console.WriteLine(first);
+        else if (node.token.Type == TokenTypes.RANDOMS)
+        {
+
             return node.Random();
             //else SemanticError($"{node.first} is not a sequence and not has defined a method \" randoms()\" ");
-            
+
         }
 
-        else if(node.token.Type ==TokenTypes.COUNT){
-            if(first is SEQUENCE2)return node.Count((SEQUENCE2)first);
+        else if (node.token.Type == TokenTypes.COUNT)
+        {
+            if (first is SEQUENCE2) return node.Count((SEQUENCE2)first);
             else SemanticError($"{node.first} is not a sequence and not has defined a method \" count()\"");
+        }
+        else if (node.token.Type == TokenTypes.SAMPLES)
+        {
+
+            return node.Samples();
+            //else SemanticError($"{node.first} is not a sequence and not has defined a method \" randoms()\" ");
+
+        }
+        else if (node.token.Type == TokenTypes.POINTS)
+        {
+            if (first is FIGURE) return node.PointsRandomInFigure((FIGURE)first);
+            else SemanticError($"{node.first} is not a sequence and not has defined a method \" points()\"");
+
         }
         return 0;
     }
@@ -345,7 +362,7 @@ public class Interpreter : NodeVisitor
     {
 
         object tree = Visit(node.Compound, Scope);
-        
+
         return tree;
     }
 
@@ -703,11 +720,12 @@ public class Interpreter : NodeVisitor
         {
             recursiveCount = 0;
             object output = Visit(item, Scope);
-            if(output is SEQUENCE2){
-                foreach(var f in (SEQUENCE2)output)Principal.console+=$"{f.Value}"+" ";
-                Principal.console+="\n";
+            if (output is SEQUENCE2)
+            {
+                foreach (var f in (SEQUENCE2)output) Principal.console += $"{f.Value}" + " ";
+                Principal.console += "\n";
             }
-            else Principal.console+=$"{output}"+"\n";
+            else Principal.console += $"{output}" + "\n";
             Console.WriteLine((output is string) ? (string)output : (output is bool) ? (bool)output : (output is double) ? Convert.ToDouble(output) : (output is TokenTypes.UNDEFINED) ? "undefined" : "debe ser una secuencia");
             //Scope.Clear();
 
@@ -743,6 +761,7 @@ public class Interpreter : NodeVisitor
 
         if (v is SEQUENCE2)
         {
+            Console.WriteLine(8912);
 
             IEnumerable<string> s = node.Left.Select(x => (string)x.Value);
 
@@ -757,11 +776,17 @@ public class Interpreter : NodeVisitor
 }
 
 );
-                foreach (var g in Scope) Console.WriteLine($"{g.Key}: {g.Value}");
+
+
                 return 0;
             }
-            bool isFIGURE = ((SEQUENCE2)v).OfType<FIGURE>().Any();
 
+
+
+            bool isFIGURE = (v is FiniteSequence2<FIGURE>) ? true : false;
+            Console.WriteLine(isFIGURE);
+
+            Console.WriteLine(89);
             var pairs = s.Zip((IEnumerable<object>)v, (a, b) => new { Key = a, Value = b }).Where(pair => pair.Key != "_");
             if (isFIGURE)
             {
@@ -772,13 +797,13 @@ public class Interpreter : NodeVisitor
                 pairs.ToList().ForEach(x => Scope.Add(x.Key, ((Variables)x.Value).Value));
 
             }
-
+            foreach (var g in Scope) Console.WriteLine($"{g.Key} : {g.Value}");
 
             // excepciones 
 
             if (!(v is InfiniteSequence2) && s.Count() > (int)((SEQUENCE2)v).counter)
             {
-                
+
                 var f = s.Skip((int)((SEQUENCE2)v).counter).Where(pair => pair != "_");
                 foreach (var i in f)
                 {
@@ -834,7 +859,7 @@ public class Interpreter : NodeVisitor
 
         else
         {
-            
+
             foreach (Var g in node.Left)
             {
                 if (g == node.Left[0]) Scope.Add((string)g.Value, v);

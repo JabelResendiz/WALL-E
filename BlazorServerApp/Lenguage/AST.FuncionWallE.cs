@@ -35,11 +35,25 @@ public class FunctionWALLE : AST
         if(!Interpreter.Scope.ContainsKey("randoms")){
             Interpreter.Scope.Add("randoms",new RandomNumber());
         }
-
+        
         return (RandomNumber)Interpreter.Scope["randoms"];
     }
-    
+    public InfiniteSequence2 Samples(){
 
+        if(!Interpreter.Scope.ContainsKey("samples")){
+            Interpreter.Scope.Add("samples",new SequencePointSamples());
+        }
+        
+        return (SequencePointSamples)Interpreter.Scope["samples"];
+    }
+    public InfiniteSequence2 PointsRandomInFigure(FIGURE figure){
+
+        if(!Interpreter.Scope.ContainsKey("points")){
+            Interpreter.Scope.Add("points",new SequencePointSamples());
+        }
+        
+        return (SequencePointSamples)Interpreter.Scope["points"];
+    }
     public List<object> /*IEnumerable<Variables>*/ Intersect(FIGURE f1, FIGURE f2)
     {
 

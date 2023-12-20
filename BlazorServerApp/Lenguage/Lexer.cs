@@ -18,9 +18,12 @@ public class Lexer
     }
 
     #region 1-LexicalError 
-    private void ErrorLexico(string error)
+    private async void ErrorLexico(string error)
     {
         Console.Write("! LEXICAL ERROR  : " + error);
+
+        await Principal._jsRuntime.InvokeAsync<string>("alert", new object[] { "! LEXICAL ERROR: " + error });
+
         throw new Exception();
         //Environment.Exit(0);
     }
