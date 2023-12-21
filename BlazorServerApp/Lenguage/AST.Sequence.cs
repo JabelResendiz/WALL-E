@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections;
 using System.Globalization;
+using System.Runtime.CompilerServices;
 namespace GOLenguage;
 
 
@@ -157,10 +158,8 @@ public class InfiniteSequence2:SEQUENCE2{
 }
 public class OpenIntervalo:InfiniteSequence2,IEnumerator<Num>{
 
-
     public double lastNumber;
     
-    //public object count;
     public OpenIntervalo(IEnumerable<Num>sequence){
 
         this.sequence=sequence;
@@ -223,8 +222,78 @@ public class SequencePointsInFigure:InfiniteSequence2,IEnumerator<POINT>{
 
     public bool MoveNext()
     {
-        
-        Current = new POINT(null,new Num(new Token(TokenTypes.NUMBER,(double)random.Next(1,800))), new Num(new Token(TokenTypes.NUMBER,(double)random.Next(1,800))));
+        if(figure is LINE || figure is SEGMENT || figure is RAY){
+            double x1= figure.param1;
+            double y1=figure.param2;
+            double x2= figure.param3;
+            double y2=figure.param4;
+            double deltaX= Math.Abs(x2-x1);
+            double MinX= Math.Min(x1,x2);
+            double MinY=Math.Min(y1,y2);
+            if(x1==x2){
+                double DeltaY= Math.Abs(y2-y1);
+                double Ypoint= random.NextDouble()*DeltaY+MinY;
+                Current=new POINT(null,new Num(new Token(TokenTypes.NUMBER,x1)), new Num(new Token(TokenTypes.NUMBER,Ypoint)));
+            }
+            else{
+                double Xpoint= random.NextDouble()*deltaX+MinX;
+                double n= y2- x2*(y1-y2)/(x1-x2);
+                double Ypoint= Xpoint*(y1-y2)/(x1-x2) +n;
+                Current=new POINT(null,new Num(new Token(TokenTypes.NUMBER,Xpoint)), new Num(new Token(TokenTypes.NUMBER,Ypoint)));
+         
+            }
+        }
+        else if(figure is CIRCLE){
+            double x1 = figure.param1;
+            double y1 = figure.param2;
+            double r1 = figure.param3;
+            double Xpoint= random.NextDouble()*2*r1+ x1-r1;
+
+            int numeroRandom= random.Next(2) ;
+            double Ypoint= (numeroRandom==0)?y1-Math.Sqrt(r1*r1-Math.Pow(x1-Xpoint,2)):y1+Math.Sqrt(r1*r1-Math.Pow(x1-Xpoint,2));
+            Current=new POINT(null,new Num(new Token(TokenTypes.NUMBER,Xpoint)), new Num(new Token(TokenTypes.NUMBER,Ypoint)));
+
+        }
+        else if(figure is POINT){
+            Current= (POINT)figure;
+        }
+        else if(figure is ARC){
+            double x1 = figure.param1;
+            double y1 = figure.param2;
+            double r1 = figure.param7;
+            double x2 = figure.param3;
+            double y2 = figure.param4;
+            double x3 = figure.param5;
+            double y3= figure.param6;
+
+            double distanceP1P2= Math.Sqrt(Math.Pow(x1 - x2, 2) + Math.Pow(y1 - y2, 2));
+            double distanceP1P3= Math.Sqrt(Math.Pow(x1-x3, 2) + Math.Pow(y1- y3, 2));
+
+            double XmLeft= x1-distanceP1P2/(r1*Math.Abs(x1-x2));
+            double XmRight= x1-distanceP1P3/(r1*Math.Abs(x1-x3));
+
+            double Xpoint= random.NextDouble()*Math.Abs(XmLeft-XmRight)+ Math.Min(XmLeft,XmRight);
+            double Ypoint1= y1-Math.Sqrt(r1*r1-Math.Pow(x1-Xpoint,2));
+            double Ypoint2= y1+Math.Sqrt(r1*r1-Math.Pow(x1-Xpoint,2));
+
+            if(y2>y3){
+                if(Ypoint1>=y3 && Ypoint1<=y2) Current=new POINT(null,new Num(new Token(TokenTypes.NUMBER,Xpoint)), new Num(new Token(TokenTypes.NUMBER,Ypoint1)));
+                else Current=new POINT(null,new Num(new Token(TokenTypes.NUMBER,Xpoint)), new Num(new Token(TokenTypes.NUMBER,Ypoint2)));
+            }
+            else if (y2<y3){
+                if(Ypoint1>=y2 && Ypoint1<=y3) Current=new POINT(null,new Num(new Token(TokenTypes.NUMBER,Xpoint)), new Num(new Token(TokenTypes.NUMBER,Ypoint1)));
+                else Current=new POINT(null,new Num(new Token(TokenTypes.NUMBER,Xpoint)), new Num(new Token(TokenTypes.NUMBER,Ypoint2)));
+            }
+            else if(x2>x3){
+                if(Ypoint1>y2)Current=new POINT(null,new Num(new Token(TokenTypes.NUMBER,Xpoint)), new Num(new Token(TokenTypes.NUMBER,Ypoint1)));
+                else Current=new POINT(null,new Num(new Token(TokenTypes.NUMBER,Xpoint)), new Num(new Token(TokenTypes.NUMBER,Ypoint2)));
+            }   
+            else {
+                if(Ypoint1<y2)Current=new POINT(null,new Num(new Token(TokenTypes.NUMBER,Xpoint)), new Num(new Token(TokenTypes.NUMBER,Ypoint1)));
+                else Current=new POINT(null,new Num(new Token(TokenTypes.NUMBER,Xpoint)), new Num(new Token(TokenTypes.NUMBER,Ypoint2)));
+
+            }
+        }
         return true;
     }
 
@@ -248,7 +317,7 @@ public class SequencePointSamples:InfiniteSequence2,IEnumerator<POINT>{
 
     public bool MoveNext()
     {
-        Current = new POINT(null,new Num(new Token(TokenTypes.NUMBER,(double)random.Next(1,400))), new Num(new Token(TokenTypes.NUMBER,(double)random.Next(1,400))));
+        Current = new POINT(null,new Num(new Token(TokenTypes.NUMBER,(double)random.Next(1,800))), new Num(new Token(TokenTypes.NUMBER,(double)random.Next(1,800))));
         return true;
     }
 

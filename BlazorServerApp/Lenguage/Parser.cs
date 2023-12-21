@@ -332,9 +332,9 @@ public class Parser
         else if (CurrentToken.Type == TokenTypes.CALL)
 
             node = CallFunction();
-
+        
         else if (CurrentToken.Type == TokenTypes.MEASURE || CurrentToken.Type == TokenTypes.INTERSECT || CurrentToken.Type == TokenTypes.COUNT ||
-        CurrentToken.Type == TokenTypes.POINTS || CurrentToken.Type == TokenTypes.RANDOMS || CurrentToken.Type == TokenTypes.SAMPLES)
+        CurrentToken.Type == TokenTypes.POINTS || CurrentToken.Type == TokenTypes.RANDOMS || CurrentToken.Type == TokenTypes.SAMPLES )
 
             node = WalleFunction();
 
@@ -356,7 +356,7 @@ public class Parser
         else if (CurrentToken.Type == TokenTypes.ARC)
             node = Arc();
 
-        else if (CurrentToken.Type == TokenTypes.L_KEY)
+        else if (CurrentToken.Type == TokenTypes.L_KEY || CurrentToken.Type==TokenTypes.UNDEFINED)
             node = Sequence();
 
         return node;
@@ -675,6 +675,7 @@ public class Parser
     // Si toma solo uno, pues el argumento, entendiendo que la base es E 
      private AST Sequence(){
         
+        if(CurrentToken.Type==TokenTypes.UNDEFINED)return new SEQUENCE2();
         Process(TokenTypes.L_KEY,"L_key");
 
         List<AST> k= new List<AST>(){Compounds()};

@@ -23,3 +23,15 @@ count(f);
 count({1,2,3 ... 45});
 count({1,2,3 ...});
 
+a,b,_=randoms();
+print a;
+print b;
+
+a,b,_=samples();
+draw{a,b};
+draw samples();
+
+a,b,_= points(circle l);
+draw {a,b};
+print {a,b};
+

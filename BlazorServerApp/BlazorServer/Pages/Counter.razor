@@ -110,7 +110,7 @@
 
 @if (!string.IsNullOrEmpty(Principal.console)){
 
-    <div class="console">
+    <div class="console" id="plane">
 
         @foreach(string linea in @Principal.console.Split('\n')){
             <p style="font-size:20px;

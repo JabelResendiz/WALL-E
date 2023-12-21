@@ -31,7 +31,19 @@ function setup() {
       canvas.remove();
    
   }
+/*
+  function PrintText(msg){
+    var divEspecified= document.getElementById('plane');
 
+    var parrafo= document.createElement('p');
+
+    parrafo.textContent=msg;
+
+    divEspecified.appendChild(parrafo);
+
+
+  }
+  */
 function DibujarLine(parameters){
 
 

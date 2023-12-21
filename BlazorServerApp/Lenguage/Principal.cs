@@ -19,6 +19,7 @@ public static class Principal
     {
 
  _jsRuntime = jsRuntime;
+ //Text=@"print randoms();";
         try
         {
             Method();

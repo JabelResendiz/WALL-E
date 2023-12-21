@@ -49,9 +49,10 @@ public static class ReservateKeywords
         ("count",TokenTypes.COUNT),
         ("samples",TokenTypes.SAMPLES),
         ("randoms",TokenTypes.RANDOMS),
+        ("points",TokenTypes.POINTS),
         ("print",TokenTypes.PRINT),
         ("import",TokenTypes.IMPORT),
-
+        ("undefined",TokenTypes.UNDEFINED),
     };
     public static Dictionary<string, TokenTypes> Keyword { get; set; } = tuplas.ToDictionary(t => t.Item1, t => t.Item2);
 

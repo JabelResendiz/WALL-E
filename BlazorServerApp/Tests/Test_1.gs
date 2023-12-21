@@ -9,5 +9,3 @@ color blue;
 
 draw line(p1,p2);
 
-print p1 "p1";
-print p2 "p2";

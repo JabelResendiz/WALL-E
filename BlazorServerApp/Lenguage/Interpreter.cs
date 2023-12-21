@@ -65,18 +65,9 @@ public class Interpreter : NodeVisitor
     public override object VisitColor(COLOR node, Dictionary<string, object> Scope)
     {
 
+        if (node.token is TokenTypes.COLOR) node.Push();
 
-
-        if (node.token is TokenTypes.COLOR)
-        {
-
-            node.Push();
-        }
-
-        else
-        {
-            node.Restore();
-        }
+        else node.Restore();
 
         return 0;
     }
@@ -102,9 +93,6 @@ public class Interpreter : NodeVisitor
 
             if (first is FIGURE && second is FIGURE)
             {
-
-                // IEnumerable<Variables> intersect= node.Intersect((FIGURE) first,(FIGURE) second);
-                //new FiniteSequence<Variables>(intersect)
                 var intersect = new FiniteSequence2<FIGURE>(node.Intersect((FIGURE)first, (FIGURE)second).Select(x => (FIGURE)x).ToList());
                 return intersect;
             }
@@ -114,10 +102,7 @@ public class Interpreter : NodeVisitor
 
         else if (node.token.Type == TokenTypes.RANDOMS)
         {
-
             return node.Random();
-            //else SemanticError($"{node.first} is not a sequence and not has defined a method \" randoms()\" ");
-
         }
 
         else if (node.token.Type == TokenTypes.COUNT)
@@ -125,13 +110,12 @@ public class Interpreter : NodeVisitor
             if (first is SEQUENCE2) return node.Count((SEQUENCE2)first);
             else SemanticError($"{node.first} is not a sequence and not has defined a method \" count()\"");
         }
+
         else if (node.token.Type == TokenTypes.SAMPLES)
         {
-
             return node.Samples();
-            //else SemanticError($"{node.first} is not a sequence and not has defined a method \" randoms()\" ");
-
         }
+        
         else if (node.token.Type == TokenTypes.POINTS)
         {
             if (first is FIGURE) return node.PointsRandomInFigure((FIGURE)first);
@@ -143,7 +127,7 @@ public class Interpreter : NodeVisitor
 
     public override SEQUENCE2 VisitSequence(SEQUENCE2 node, Dictionary<string, object> Scope)
     {
-
+        
 
         if (node is RangoSequence2 || node is InfiniteSequence2)
         {
@@ -236,15 +220,19 @@ public class Interpreter : NodeVisitor
 
         if (!(x is IEnumerable<object>))
         {
-
             Drawing(x);
 
         }
         else
         {
+            double recursiveCount2=recursiveCount;
             foreach (var item in (IEnumerable<object>)x)
             {
-
+                recursiveCount2+=1;
+                if(recursiveCount2>9000)
+                {
+                    break;
+                }
                 Drawing(item);
 
             }
@@ -363,6 +351,7 @@ public class Interpreter : NodeVisitor
 
         object tree = Visit(node.Compound, Scope);
 
+        
         return tree;
     }
 
@@ -722,15 +711,25 @@ public class Interpreter : NodeVisitor
             object output = Visit(item, Scope);
             if (output is SEQUENCE2)
             {
-                foreach (var f in (SEQUENCE2)output) Principal.console += $"{f.Value}" + " ";
-                Principal.console += "\n";
+
+                foreach (var f in (SEQUENCE2)output) 
+                {
+                    recursiveCount+=1;
+                    if(recursiveCount>9000){
+                        break;
+                    }
+                    Principal.console+=f.Value.ToString() + " , ";
+                }
+                
             }
             else Principal.console += $"{output}" + "\n";
             Console.WriteLine((output is string) ? (string)output : (output is bool) ? (bool)output : (output is double) ? Convert.ToDouble(output) : (output is TokenTypes.UNDEFINED) ? "undefined" : "debe ser una secuencia");
             //Scope.Clear();
 
         }
-
+        static async void PrintText(string msg){
+            await Principal._jsRuntime.InvokeAsync<string>("PrintText",$"{msg}");
+        }
         Console.WriteLine(recursiveCount);
 
         Principal.Functiones.Clear();
@@ -739,7 +738,7 @@ public class Interpreter : NodeVisitor
 
         return 0;
     }
-
+    
     public override object VisitDeclarations(Declarations node, Dictionary<string, object> Scope)
     {
 
@@ -784,9 +783,7 @@ public class Interpreter : NodeVisitor
 
 
             bool isFIGURE = (v is FiniteSequence2<FIGURE>) ? true : false;
-            Console.WriteLine(isFIGURE);
 
-            Console.WriteLine(89);
             var pairs = s.Zip((IEnumerable<object>)v, (a, b) => new { Key = a, Value = b }).Where(pair => pair.Key != "_");
             if (isFIGURE)
             {
@@ -797,9 +794,6 @@ public class Interpreter : NodeVisitor
                 pairs.ToList().ForEach(x => Scope.Add(x.Key, ((Variables)x.Value).Value));
 
             }
-            foreach (var g in Scope) Console.WriteLine($"{g.Key} : {g.Value}");
-
-            // excepciones 
 
             if (!(v is InfiniteSequence2) && s.Count() > (int)((SEQUENCE2)v).counter)
             {

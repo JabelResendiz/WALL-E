@@ -49,12 +49,12 @@ public class FunctionWALLE : AST
     public InfiniteSequence2 PointsRandomInFigure(FIGURE figure){
 
         if(!Interpreter.Scope.ContainsKey("points")){
-            Interpreter.Scope.Add("points",new SequencePointSamples());
+            Interpreter.Scope.Add("points",new SequencePointsInFigure(figure));
         }
         
-        return (SequencePointSamples)Interpreter.Scope["points"];
+        return (SequencePointsInFigure)Interpreter.Scope["points"];
     }
-    public List<object> /*IEnumerable<Variables>*/ Intersect(FIGURE f1, FIGURE f2)
+    public List<object>Intersect(FIGURE f1, FIGURE f2)
     {
 
         List<object> lista = new List<object>();
@@ -178,10 +178,6 @@ public class FunctionWALLE : AST
             }
 
         }
-
-
-
-
 
 
         else if (f1 is LINE)
