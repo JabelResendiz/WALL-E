@@ -48,11 +48,11 @@ geométricos. En la carpeta Lenguage aparece implementada la lógica del lenguaj
 
 ## Running Tests
 
-El proyecto es capaz de reconocer librerias importadas que el usuario deberá ubicar en la dirección :
+El proyecto es capaz de reconocer librerías importadas que el usuario deberá ubicar en la dirección :
 ```bash
    ~/BlazorServerApp/Tests
 ```
-Ahi vera que hay cargada otros archivos que estaran a su disposición y los cuales sera libre de modificar. 
+Ahí vera que hay cargada otros archivos que estaran a su disposición y los cuales será libre de modificar. 
 
 ## Screenshots 📸
 
@@ -78,13 +78,13 @@ Usando la Tecnología de BlazorServer y aprovechando gran parte de sus implement
 
 Ademas hacemos uso de las librerías P5 de JavaScript para la representacion del lienzo de las figuras y el dibujo de las mismas.
 
-No pretendemos que el diseño super novedoso pero en realidad es un punto de inflexion en la vida del proyecto. El usuario (usted) se sentira mas comodo trabajando desde un sitio al cual puede acceder sin necesidad de un compilador específico, solo usando el navegador de su PC. 
+No pretendemos que el diseño super novedoso pero en realidad es un punto de inflexion en la vida del proyecto. El usuario (usted) se sentirá más cómodo trabajando desde un sitio al cual puede acceder sin necesidad de un compilador específico, solo usando el navegador de su PC. 
 
-Aunque las pruebas no estan hechas en todos los navegadores del mercado, al menos en esta primera versión esta probado en el Chrome ,que sí, no es el navegador por defecto de Windows, Mac o de su distribucion de Linux pero agradeceríamos que fuese GoogleChrome su opción. Sin embargo el software es libre, esta en su derecho de modificar el diseño. 🚀
+Aunque las pruebas no están hechas en todos los navegadores del mercado, al menos en esta primera versión esta probado en el Chrome ,que sí, no es el navegador por defecto de Windows, Mac o de su distribucion de Linux pero agradeceríamos que fuese GoogleChrome su opción. Sin embargo el software es libre, esta en su derecho de modificar el diseño. 🚀
 
 ## Documentation 🛰
 
-El proyecto implementa muchas funcionabilidades de nuestro Segundo Proyecto HULK, una invitacion a que se entere de que iba y quede mas satisfecho con la explicacion de muchas implementaciones si no le quedan claro aqui. Aunque lo dudamos 👾
+El proyecto implementa muchas funcionabilidades de nuestro Segundo Proyecto HULK, una invitación a que se entere de que iba y quede más satisfecho con la explicación de muchas implementaciones si no le quedan claro aquí. Aunque lo dudamos 👾
 
 [HULK Documentation](https://github.com/JabelResendiz/HULK---Interpreter)
 [WallE Informe](/GeoWall-E.pdf)
