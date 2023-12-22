@@ -24,26 +24,16 @@ function setup() {
     //ellipse(200,200,50,50);
     ///ellipse(random(width),random(height),50,50);
   }
-
+function AlertMessage(msg){
+  alert(msg);
+}
   function destroyCanvas(){
     
   
       canvas.remove();
    
   }
-/*
-  function PrintText(msg){
-    var divEspecified= document.getElementById('plane');
 
-    var parrafo= document.createElement('p');
-
-    parrafo.textContent=msg;
-
-    divEspecified.appendChild(parrafo);
-
-
-  }
-  */
 function DibujarLine(parameters){
 
 

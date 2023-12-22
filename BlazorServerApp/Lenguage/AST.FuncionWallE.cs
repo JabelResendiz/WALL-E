@@ -1004,4 +1004,4 @@ public class FunctionWALLE : AST
 // metodo para calcular los puntos de interseccion entre una recta y un circulo
 
 // un punto pertenece a un segmento si la suma de la distancia a los extremos es igual a la longitud del segmento
-// un punto pertenece a un rayo si el producto escalar entre el vector que va desde el origen hasta le punto y el vector director del rayo
+// un punto pertenece a un rayo si el producto escalar entre el vector que va desde el origen hasta le punto y el vector director del rayo es mayor o igual a 0

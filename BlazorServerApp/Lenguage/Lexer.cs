@@ -18,14 +18,16 @@ public class Lexer
     }
 
     #region 1-LexicalError 
-    private async void ErrorLexico(string error)
+    private void LexicalError(string error)
     {
-        Console.Write("! LEXICAL ERROR  : " + error);
-
-        await Principal._jsRuntime.InvokeAsync<string>("alert", new object[] { "! LEXICAL ERROR: " + error });
-
+        Console.WriteLine("!LEXICAL ERROR: " + error);
+        LexicalErrorAsync("!LEXICAL ERROR: " + error);
+        Console.WriteLine(78);
         throw new Exception();
-        //Environment.Exit(0);
+        
+    }
+    private async void LexicalErrorAsync(string error){
+       await Principal._jsRuntime.InvokeAsync<string>("AlertMessage", new object[]{$"!LEXICAL ERROR :{error}"});
     }
 
     #endregion
@@ -249,7 +251,7 @@ public class Lexer
 
             }
 
-            ErrorLexico($"' {CurrentChar} ' Unknown token. Col {Pos}");
+            LexicalError($"' {CurrentChar} ' Unknown token. Col {Pos}");
         }
 
         return new Token(TokenTypes.EOF, "EOF");
@@ -307,7 +309,7 @@ public class Lexer
         }
         if (CurrentChar == '\"') Next();
 
-        else if (CurrentChar == null) ErrorLexico($"\"{value}\" its has not finished. Char \" ,which closes, has not been found");
+        else if (CurrentChar == null) LexicalError($"\"{value}\" its has not finished. Char \" ,which closes, has not been found");
 
 
         return new Token(TokenTypes.STRING, value);
@@ -344,7 +346,7 @@ public class Lexer
                 Next();
                 if (CurrentChar == null) break;
             }
-            if (variable != 0) ErrorLexico($"\" {value} \" is not valid token. Col {Pos - value.Length}");
+            if (variable != 0) LexicalError($"\" {value} \" is not valid token. Col {Pos - value.Length}");
         }
         try
         {
@@ -352,7 +354,7 @@ public class Lexer
         }
         catch (Exception e)
         {
-            ErrorLexico($"\"{value}\" is not valid token. Col {Pos - value.Length}");
+            LexicalError($"\"{value}\" is not valid token. Col {Pos - value.Length}");
         }
         return new Token(TokenTypes.NUMBER, double.Parse(value));
 

@@ -19,20 +19,21 @@ public static class Principal
     {
 
  _jsRuntime = jsRuntime;
- //Text=@"print randoms();";
+
         try
         {
             Method();
         }
         catch (Exception ex)
         {
-            Console.WriteLine("An error has ocurred in your program");
+            Console.WriteLine("An error has ocurred in your program eexecepiu45");
             Functiones.Clear();
             COLOR.stackColor.Clear();
             Interpreter.Scope.Clear();
+            //Principal.console.Split('\n').ToList().ForEach(x=>Console.WriteLine(x));
         }
 
-
+        Console.WriteLine(123);
 
     }
 

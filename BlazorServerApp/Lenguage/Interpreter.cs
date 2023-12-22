@@ -1,11 +1,8 @@
 
 
-
 namespace GOLenguage;
 
-using System.Runtime.CompilerServices;
-using System.Runtime.Intrinsics.Arm;
-using System.Security.Cryptography.X509Certificates;
+using System.Net.Mail;
 using Microsoft.JSInterop;
 
 
@@ -17,10 +14,6 @@ public class Interpreter : NodeVisitor
     private Parser? Parser;
     public static Dictionary<string, object> Scope;// variables declaradas con let (no puede ser global en todo el programa)
                                                    //public Dictionary<string,AST>Function= new Dictionary<string, AST>();
-
-
-    //public ReservateKeywords reserved= new ReservateKeywords();
-    //public Principal principal= new Principal();
     public Interpreter(Parser parser)
     {
 
@@ -28,40 +21,93 @@ public class Interpreter : NodeVisitor
         Scope = new Dictionary<string, object>();// esto es una variable local
 
         appendText();// inicializando el lienzo una sola vez
+        
     }
 
-    # region 1 Semantic Error
-    private async void SemanticError(string error)
+    public object Interpret()
     {
-        Console.WriteLine("!SEMANTIC ERROR: " + error);
-        await Principal._jsRuntime.InvokeAsync<string>("alert", "!SEMANTIC ERROR: " + error);
 
-        throw new Exception();
+        AST tree = Parser.Parse();
+
+        if (tree == null)
+
+            return -1;
+
+        //return tree;
+        return Visit(tree, Scope);
     }
-
-    #endregion
-
-    #region 2 Evaluador de cada nodo del AST
-    //evaluador de una funcion logaritmo
 
 
     // metodo llamado para inicalizar el lienzo de la function setup de la liberia P5.JS
-
-
-    public async void appendText()
+    private async void appendText()
     {
 
-        try
-        {
-            await Principal._jsRuntime.InvokeAsync<string>("setup", "Text will append when you close this alert");
-        }
 
-        catch (TaskCanceledException)
-        {
-            Console.WriteLine("wtf men 123445567890-48958309485093840958");
-        }
+        await Principal._jsRuntime.InvokeAsync<string>("setup", "Text will append when you close this alert");
+
     }
 
+    #region 1 Semantic Error
+    private void SemanticError(string error)
+    {
+        Console.WriteLine("!SEMANTIC ERROR: " + error);
+        SemanticErrorAsync("!SEMANTIC ERROR: " + error);
+        Console.WriteLine(78);
+        throw new Exception();
+        
+    }
+    private async void SemanticErrorAsync(string error){
+       await Principal._jsRuntime.InvokeAsync<string>("AlertMessage", $"{error}");
+    }
+    
+    #endregion
+
+    #region 2 Evaluador de cada nodo del AST
+
+    // metodo para evaluar cada instruccion del codigo
+    public override object VisitInstructions(Instructions node, Dictionary<string, object> Scope)
+    {
+        foreach (var item in node.Commands)
+        {
+            recursiveCount = 0;
+
+            object output = Visit(item, Scope);
+
+
+            if (output is SEQUENCE2)
+            {
+
+                foreach (var f in (SEQUENCE2)output)
+                {
+                    recursiveCount += 1;
+                    if (recursiveCount > 9000)
+                    {
+                        break;
+                    }
+                    Principal.console += f.Value.ToString() + " , ";
+                }
+
+            }
+            else Principal.console += $"{output}" + "\n";
+            Console.WriteLine((output is string) ? (string)output : (output is bool) ? (bool)output : (output is double) ? Convert.ToDouble(output) : (output is TokenTypes.UNDEFINED) ? "undefined" : "debe ser una secuencia");
+            //Scope.Clear();
+
+
+
+        }
+
+        static async void PrintText(string msg)
+        {
+            await Principal._jsRuntime.InvokeAsync<string>("PrintText", $"{msg}");
+        }
+        Console.WriteLine(recursiveCount);
+
+        Principal.Functiones.Clear();
+        COLOR.stackColor.Clear();
+        Scope.Clear();
+
+        return 0;
+    }
     public override object VisitColor(COLOR node, Dictionary<string, object> Scope)
     {
 
@@ -115,7 +161,7 @@ public class Interpreter : NodeVisitor
         {
             return node.Samples();
         }
-        
+
         else if (node.token.Type == TokenTypes.POINTS)
         {
             if (first is FIGURE) return node.PointsRandomInFigure((FIGURE)first);
@@ -127,7 +173,7 @@ public class Interpreter : NodeVisitor
 
     public override SEQUENCE2 VisitSequence(SEQUENCE2 node, Dictionary<string, object> Scope)
     {
-        
+
 
         if (node is RangoSequence2 || node is InfiniteSequence2)
         {
@@ -225,11 +271,11 @@ public class Interpreter : NodeVisitor
         }
         else
         {
-            double recursiveCount2=recursiveCount;
+            double recursiveCount2 = recursiveCount;
             foreach (var item in (IEnumerable<object>)x)
             {
-                recursiveCount2+=1;
-                if(recursiveCount2>9000)
+                recursiveCount2 += 1;
+                if (recursiveCount2 > 9000)
                 {
                     break;
                 }
@@ -351,7 +397,7 @@ public class Interpreter : NodeVisitor
 
         object tree = Visit(node.Compound, Scope);
 
-        
+
         return tree;
     }
 
@@ -702,43 +748,8 @@ public class Interpreter : NodeVisitor
         return result;
     }
 
-    // metodo para evaluar cada instruccion del codigo
-    public override object VisitInstructions(Instructions node, Dictionary<string, object> Scope)
-    {
-        foreach (var item in node.Commands)
-        {
-            recursiveCount = 0;
-            object output = Visit(item, Scope);
-            if (output is SEQUENCE2)
-            {
 
-                foreach (var f in (SEQUENCE2)output) 
-                {
-                    recursiveCount+=1;
-                    if(recursiveCount>9000){
-                        break;
-                    }
-                    Principal.console+=f.Value.ToString() + " , ";
-                }
-                
-            }
-            else Principal.console += $"{output}" + "\n";
-            Console.WriteLine((output is string) ? (string)output : (output is bool) ? (bool)output : (output is double) ? Convert.ToDouble(output) : (output is TokenTypes.UNDEFINED) ? "undefined" : "debe ser una secuencia");
-            //Scope.Clear();
 
-        }
-        static async void PrintText(string msg){
-            await Principal._jsRuntime.InvokeAsync<string>("PrintText",$"{msg}");
-        }
-        Console.WriteLine(recursiveCount);
-
-        Principal.Functiones.Clear();
-        COLOR.stackColor.Clear();
-        Scope.Clear();
-
-        return 0;
-    }
-    
     public override object VisitDeclarations(Declarations node, Dictionary<string, object> Scope)
     {
 
@@ -923,7 +934,6 @@ public class Interpreter : NodeVisitor
         return node.Value;
     }
 
-
     // metodo que retorna e valor de un bool
     public override object VisitBool(Bool node, Dictionary<string, object> Scope)
     {
@@ -958,18 +968,7 @@ public class Interpreter : NodeVisitor
     public override object VisitEmpty(Empty node) { return 0; }
 
     // se va a crear el AST y se va a dar a llenar el diccionario Scope
-    public object Interpret()
-    {
 
-        AST tree = Parser.Parse();
-
-        if (tree == null)
-
-            return -1;
-
-        //return tree;
-        return Visit(tree, Scope);
-    }
     #endregion
 }
 
