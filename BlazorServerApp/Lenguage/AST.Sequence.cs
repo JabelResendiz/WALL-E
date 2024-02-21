@@ -9,7 +9,7 @@ namespace GOLenguage;
 
 
 #region SEQUENCE2
-// Finite sale de circulacion 
+
 public class SEQUENCE2:AST,IEnumerable<Variables>{
     public IEnumerable<Variables> sequence;
     public IEnumerator<Variables> enumerator;
